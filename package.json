@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/johnbrightagbons/cse341_team_project#readme",
   "dependencies": {
-    "express": "^5.1.0"
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1"
   }
 }
