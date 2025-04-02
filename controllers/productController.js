@@ -1,6 +1,6 @@
 import { Product } from "../models/product.model.js"
 import createError from "http-errors"
-import validatedProduct from "../utils/validateProduc.js"
+import validatedProduct from "../middleware/validateProduct.js"
 
 
 const  createProduct = async(req,res, next)=>{
