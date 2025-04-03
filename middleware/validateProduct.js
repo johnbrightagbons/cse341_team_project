@@ -1,12 +1,9 @@
-const product  = (req, res, next) => {
+const validateProduct  = (req, res, next) => {
     const { name, description, price} = req.body;
     if (!name || !description || !price) {
-        return res.status(400).json({ error: "Required field missing" });
+        return next ({ status: 406, message: "Required field missing"});
     }
     next();
 };
 
-
-module.exports = {
-    product
-};
+export { validateProduct };

@@ -1,11 +1,9 @@
-const user  = (req, res, next) => {
+const validateUser  = (req, res, next) => {
     const { username, email, password} = req.body;
     if (!username || !email || !password) {
-        return res.status(400).json({ error: "Required field missing" });
+        return next ({ status: 406, message: "Required field missing"});
     }
     next();
 };
 
-module.exports = {
-    user
-};
+export { validateUser };
