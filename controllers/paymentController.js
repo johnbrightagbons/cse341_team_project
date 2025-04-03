@@ -1,6 +1,6 @@
-import { Payment } from "../models/payment.model";
+import { Payment } from "../models/payment.model.js";
 import createError from "http-errors";
-import { validatePayment} from "../middleware/validatePayment";
+import { validatePayment} from "../middleware/validatePayment.js";
 import mongoose from "mongoose";
 
 const getAll = async(req, res, next) => {

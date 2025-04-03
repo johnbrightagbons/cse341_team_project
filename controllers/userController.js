@@ -1,6 +1,6 @@
-import { User } from "../models/user.model";
+import { User } from "../models/user.model.js";
 import createError from "http-errors";
-import { valiadteUser } from "../middleware/validateUser";
+import { validateUser } from "../middleware/validateUser.js";
 import mongoose from "mongoose";
 
 const getAll = async(req,res, next) => {
@@ -35,7 +35,7 @@ const getSingle = async(req, res, next) => {
 const  createUser = async(req,res, next)=>{
     try {
         //#swagger.tags=['User']
-        const validatedData = await valiadteUser.validateAsync(req.body);
+        const validatedData = await validateUser.validateAsync(req.body);
         const newUser = new Order (validatedData);
         await newUser.save();
 
@@ -54,7 +54,7 @@ const updateUser = async(req, res, next) => {
             return next(createError(401, "Invalid user ID"));
         }
 
-        const validatedData = await valiadteUser.validateAsync(req.body);
+        const validatedData = await validateUser.validateAsync(req.body);
         const updateUser = await User.findByIdAndUpdate(id, validatedData, {
             new: true,
             runValidators: true,
