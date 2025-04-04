@@ -34,10 +34,10 @@ const swaggerFilePath = path.resolve("swagger.json");
 const swaggerDocument = JSON.parse(fs.readFileSync(swaggerFilePath, "utf-8"));
 
 //routers
-app.use("/api/auth",userRouter)
-app.use("/api/product", productRouter)
-app.use("/api/order",orderRouter)
-app.use("/api/payment",paymentRouter)
+app.use("/user",userRouter)
+app.use("/product", productRouter)
+app.use("/order",orderRouter)
+app.use("/payment",paymentRouter)
 
 //swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
