@@ -1,0 +1,18 @@
+#get all
+ GET http://localhost:5002/users
+
+###get Single
+GET http://localhost:5002/api/product/67ef255ab192f25d1cd2b915
+
+
+###put product
+PUT http://localhost:5002/api/product/67ef255ab192f25d1cd2b915
+Content-Type: application/json
+
+{  "name": "comic",
+  "description": "any'",
+  "image": "https://example.com/any.jpg",
+  "price": 1999.99,
+  "createdAt": "2025-04-02T18:00:00.000Z",
+  "updatedAt": "2025-04-02T18:00:00.000Z"
+}
