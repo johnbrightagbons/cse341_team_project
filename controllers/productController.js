@@ -19,7 +19,7 @@ const getSingle = async(req, res, next) => {
         const { id } = req.params;
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            return next(createError(401, "Invalid Product Id"));
+            return next(createError(400, "Invalid Product Id"));
         }    
 
     const product = await Product.findById(id);
@@ -50,7 +50,7 @@ const updateProduct = async(req, res, next) => {
         const { id } = req.params;
 
         if(!mongoose.Types.ObjectId.isValid(id)){
-            return next(createError(401, "Invalid product ID"));
+            return next(createError(400, "Invalid product ID"));
         }
 
         const updatedProduct = await Product.findByIdAndUpdate(id, req.body, {

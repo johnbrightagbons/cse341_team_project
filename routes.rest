@@ -1,31 +1,36 @@
 #get all
- GET http://localhost:5002/api/product
+ GET http://localhost:5002/api/payment
+
 
 ###get Single
-GET http://localhost:5002/api/product/67ef255ab192f25d1cd2b915
+GET http://localhost:5002/api/order/67f01f0f8f3558d611068ceb
 
 
 ###put product
-PUT http://localhost:5002/api/product/67ef255ab192f25d1cd2b915
+PUT http://localhost:5002/api/order/67f01f0f8f3558d611068ceb
 Content-Type: application/json
 
 {  
-  "name": "Smart Jason Tv",
-  "description": "Smart Tv 50'",
-  "image": "https://example.com/jasontv.jpg",
-  "price": 1999.99
+  "userId": "67f01b1b8f3558d611068cd9",
+  "productId": "67f017bbb626bbf9f015fafd",
+  "description": "xxxx xxxx xxxx xxxx xxxx '",
+  "image": "https://example.com/any.jpg",
+  "price": 1999.99,
+  "status": "shipped"
 }
 
 ###delete product
-DELETE http://localhost:5002/api/product/67ef2490b192f25d1cd2b912
+DELETE http://localhost:5002/api/auth/67f01b4e8f3558d611068cdd
 
 ###post a product
-POST http://localhost:5002/api/product/
+POST http://localhost:5002/api/payment
 Content-Type: application/json
 
 {  
-    "name": "comic",
-  "description": "xxxx xxxx xxxx xxxx xxxx '",
-  "image": "https://example.com/any.jpg",
-  "price": 1999.99  
+  "orderId": "67f01f0f8f3558d611068ceb",
+  "userId": "67f01b1b8f3558d611068cd9",
+  "amount": 1999.99,
+  "paymentMethod": "credit_card",
+  "transactionId": "1234",
+  "status": "completed"
 }

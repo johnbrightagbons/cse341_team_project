@@ -19,7 +19,7 @@ const getSingle = async(req, res, next) => {
         const { id } = req.params;
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            return next(createError(401, "Invalid Payment Id"));
+            return next(createError(400, "Invalid Payment Id"));
         }    
 
     const payment = await payment.findById(id);
@@ -51,7 +51,7 @@ const updatePayment = async(req, res, next) => {
         const { id } = req.params;
 
         if(!mongoose.Types.ObjectId.isValid(id)){
-            return next(createError(401, "Invalid Payment ID"));
+            return next(createError(400, "Invalid Payment ID"));
         }
 
         const updatedPayment = await Payment.findByIdAndUpdate(id, req.body, {
