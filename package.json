@@ -10,16 +10,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/johnbrightagbons/cse341_team_project.git"
+    "url": "git+https://github.com/sorayaskavinski/cse341_team_project.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "bugs": {
-    "url": "https://github.com/johnbrightagbons/cse341_team_project/issues"
+    "url": "https://github.com/sorayaskavinski/cse341_team_project/issues"
   },
-  "homepage": "https://github.com/johnbrightagbons/cse341_team_project#readme",
+  "homepage": "https://github.com/sorayaskavinski/cse341_team_project#readme",
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "cookieparser": "^0.1.0",
