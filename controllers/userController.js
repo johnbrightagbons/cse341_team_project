@@ -55,15 +55,15 @@ const updateUser = async(req, res, next) => {
         }
 
         const validatedData = await validateUser.validateAsync(req.body);
-        const updateUser = await User.findByIdAndUpdate(id, validatedData, {
+        const updatedUser = await User.findByIdAndUpdate(id, validatedData, {
             new: true,
             runValidators: true,
         });
 
-        if (!updateUser){
+        if (!updatedUser){
             return next(createError(404, "User not found"));
         }
-        res.status(200).json(updateUser);
+        res.status(200).json(updatedUser);
     } catch (error){
         if (error.isJoi){
             return next(createError(400, error.details[0].message));

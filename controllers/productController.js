@@ -55,15 +55,16 @@ const updateProduct = async(req, res, next) => {
         }
 
         const validatedData = await validateProduct.validateAsync(req.body);
-        const updateProduct = await Product.findByIdAndUpdate(id, validatedData, {
+        const updatedProduct = await Product.findByIdAndUpdate(id, validatedData, {
             new: true,
             runValidators: true,
         });
+        
 
-        if (!updateProduct){
+        if (!updatedProduct){
             return next(createError(404, "Product not found"));
         }
-        res.status(200).json(updateProduct);
+        res.status(200).json(updatedProduct);
     } catch (error){
         if (error.isJoi){
             return next(createError(400, error.details[0].message));
