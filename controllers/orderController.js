@@ -35,8 +35,8 @@ const getSingle = async(req, res, next) => {
 const  createOrder = async(req,res, next)=>{
     try {
         //#swagger.tags=['Order']
-        const validatedData = await validateOrder.validateAsync(req.body);
-        const newOrder = new Order (validatedData);
+        
+        const newOrder = new Order (req.body);
         await newOrder.save();
 
         res.status(201).json(newOrder);
@@ -53,17 +53,16 @@ const updateOrder = async(req, res, next) => {
         if(!mongoose.Types.ObjectId.isValid(id)){
             return next(createError(401, "Invalid Ordder ID"));
         }
-
-        const validatedData = await validateOrder.validateAsync(req.body);
-        const updateOrder = await Order.findByIdAndUpdate(id, validatedData, {
+       
+        const updatedOrder = await Order.findByIdAndUpdate(id, req.body, {
             new: true,
             runValidators: true,
         });
 
-        if (!updateOrder){
+        if (!updatedOrder){
             return next(createError(404, "Order not found"));
         }
-        res.status(200).json(updateOrder);
+        res.status(200).json(updatedOrder);
     } catch (error){
         if (error.isJoi){
             return next(createError(400, error.details[0].message));

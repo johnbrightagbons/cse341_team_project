@@ -1,5 +1,5 @@
 #get all
- GET http://localhost:5002/users
+ GET http://localhost:5002/api/product
 
 ###get Single
 GET http://localhost:5002/api/product/67ef255ab192f25d1cd2b915
@@ -9,10 +9,23 @@ GET http://localhost:5002/api/product/67ef255ab192f25d1cd2b915
 PUT http://localhost:5002/api/product/67ef255ab192f25d1cd2b915
 Content-Type: application/json
 
-{  "name": "comic",
-  "description": "any'",
+{  
+  "name": "Smart Jason Tv",
+  "description": "Smart Tv 50'",
+  "image": "https://example.com/jasontv.jpg",
+  "price": 1999.99
+}
+
+###delete product
+DELETE http://localhost:5002/api/product/67ef2490b192f25d1cd2b912
+
+###post a product
+POST http://localhost:5002/api/product/
+Content-Type: application/json
+
+{  
+    "name": "comic",
+  "description": "xxxx xxxx xxxx xxxx xxxx '",
   "image": "https://example.com/any.jpg",
-  "price": 1999.99,
-  "createdAt": "2025-04-02T18:00:00.000Z",
-  "updatedAt": "2025-04-02T18:00:00.000Z"
+  "price": 1999.99  
 }

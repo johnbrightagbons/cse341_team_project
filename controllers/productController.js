@@ -35,8 +35,7 @@ const getSingle = async(req, res, next) => {
 const  createProduct = async(req,res, next)=>{
     try {
         //#swagger.tags=['Product']
-        const validatedData = await validateProduct.validateAsync(req.body);
-        const newProduct = new Order (validatedData);
+        const newProduct = new Product(req.body);
         await newProduct.save();
 
         res.status(201).json(newProduct);
@@ -54,8 +53,7 @@ const updateProduct = async(req, res, next) => {
             return next(createError(401, "Invalid product ID"));
         }
 
-        const validatedData = await validateProduct.validateAsync(req.body);
-        const updatedProduct = await Product.findByIdAndUpdate(id, validatedData, {
+        const updatedProduct = await Product.findByIdAndUpdate(id, req.body, {
             new: true,
             runValidators: true,
         });

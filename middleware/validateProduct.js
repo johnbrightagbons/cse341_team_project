@@ -13,9 +13,9 @@ const productSchema = Joi.object({
 
 export const validateProduct = async (req, res, next) => {
     try {
-        await productSchema.validateAsync(req.body);
+        await  productSchema.validateAsync(req.body);
         next();  
     } catch (error) {
         next(createError(400, error.details[0].message));  
     }
-};
+}

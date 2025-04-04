@@ -35,8 +35,8 @@ const getSingle = async(req, res, next) => {
 const  createPayment = async(req,res, next)=>{
     try {
         //#swagger.tags=['Payment']
-        const validatedData = await validatePayment.validateAsync(req.body);
-        const newPayment = new Payment (validatedData);
+        
+        const newPayment = new Payment (req.body);
         await newPayment.save();
 
         res.status(201).json(newPayment);
@@ -54,16 +54,15 @@ const updatePayment = async(req, res, next) => {
             return next(createError(401, "Invalid Payment ID"));
         }
 
-        const validatedData = await validatePayment.validateAsync(req.body);
-        const updatePayment = await Payment.findByIdAndUpdate(id, validatedData, {
+        const updatedPayment = await Payment.findByIdAndUpdate(id, req.body, {
             new: true,
             runValidators: true,
         });
 
-        if (!updatePayment){
+        if (!updatedPayment){
             return next(createError(404, "Payment not found"));
         }
-        res.status(200).json(updatePayment);
+        res.status(200).json(updatedPayment);
     } catch (error){
         if (error.isJoi){
             return next(createError(400, error.details[0].message));

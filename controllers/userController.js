@@ -35,8 +35,7 @@ const getSingle = async(req, res, next) => {
 const  createUser = async(req,res, next)=>{
     try {
         //#swagger.tags=['User']
-        const validatedData = await validateUser.validateAsync(req.body);
-        const newUser = new Order (validatedData);
+        const newUser = new User(req.body);
         await newUser.save();
 
         res.status(201).json(newUser);
@@ -54,8 +53,7 @@ const updateUser = async(req, res, next) => {
             return next(createError(401, "Invalid user ID"));
         }
 
-        const validatedData = await validateUser.validateAsync(req.body);
-        const updatedUser = await User.findByIdAndUpdate(id, validatedData, {
+        const updatedUser = await User.findByIdAndUpdate(id, req.body, {
             new: true,
             runValidators: true,
         });
