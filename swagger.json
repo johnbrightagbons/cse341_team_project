@@ -144,10 +144,10 @@
               "type": "object",
               "required": ["username", "email", "password"],
               "properties": {
-                "username": { "type": "string" },
-                "email": { "type": "string" },
-                "password": { "type": "string"},               
-                "role":{"type":"string", "example": "client, admin"}               
+                "username": { "type": "string", "example": "null"},
+                "email": { "type": "string", "example": "xxx@xxx.com" },
+                "password": { "type": "string", "exemple": "123456fff"},               
+                "role":{"type":"string", "example": "client or admin"}               
               }            
             }
           }
@@ -262,9 +262,9 @@
               "type": "object",
               "required": ["userID", "productID"],
               "properties": {
-                "userID": { "type": "string" },
+                "userId": { "type": "string" },
                 "productId": { "type": "string" },
-                "description": { "type": "string"},               
+                "description": { "type": "string", "example": "xxxx xxxx xxx"},               
                 "image":{"type":"string", "exemple": "https://example.com/smarttv.jpg"},
                 "price":{"type":"number", "example": 123.99},
                 "status":{"type": "string", "example": "pending, processing, shipped, delivered,cancelled"}
@@ -320,9 +320,9 @@
               "type": "object",
               "required": ["userID", "productID"],
               "properties": {
-                "userID": { "type": "string" },
+                "userId": { "type": "string" },
                 "productId": { "type": "string" },
-                "description": { "type": "string"},               
+                "description": { "type": "string", "example": "xxxx xxxx xxx"},               
                 "image":{"type":"string", "example":"https://example.com/smarttv.jpg"},
                 "price":{"type":"number", "example": 132.99},
                 "status":{"type": "string", "example": "pending, processing, shipped, delivered,cancelled"}
@@ -386,7 +386,7 @@
               "properties": {
                 "orderId": { "type": "string" },
                 "userId": { "type": "string" },
-                "amount": { "type": "number"},               
+                "amount": { "type": "number", "example": 999.99},               
                 "paymentMethod":{"type":"string", "example": "credit_card, paypal, bank_transfer, mobile_money"},
                 "transactionId":{"type":"string", "example": "1234MNS"},
                 "status":{"type": "string", "example": "pending, completed, failed, refunded"}
@@ -444,7 +444,7 @@
               "properties": {
                 "orderId": { "type": "string" },
                 "userId": { "type": "string" },
-                "amount": { "type": "number"},               
+                "amount": { "type": "number", "example": 999.99},               
                 "paymentMethod":{"type":"string", "example": "credit_card, paypal, bank_transfer, mobile_money"},
                 "transactionId":{"type":"string", "example": "1234MNS"},
                 "status":{"type": "string", "example": "pending, completed, failed, refunded"}
