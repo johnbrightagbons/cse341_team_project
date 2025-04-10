@@ -1,5 +1,14 @@
 # cse341_team_project
- #Intructions  
+ # Intructions
+
+ # to make the app work please run the following command to install all the packages
+
+ # 1. 👉👉 1. [npm init --y]
+ #### 👉👉 2. [npm install cors dotenv express fs jsdoc mongodb mongoose swagger swagger-jsdoc swagger-ui-express --save]
+ #### create a file [.env] and paste this [MONGO_URL=""] in the file and save.
+
+
+
  # We are going to  use " import ..... from 'file' instead of  required  which is not  secure .
  # 2. When import a  Modul  using with  with  extensions , like " import  example  from "index.js"
 
