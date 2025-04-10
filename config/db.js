@@ -2,15 +2,9 @@ import mongoose from "mongoose";
 
 export const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URL);
+    await mongoose.connect(process.env.MONGO_URL);
     console.log("Connected to MongoDB Atlas");
-    return conn;
-  } catch {
-    console.log("Failed to connect:");
+  } catch (error) {
+    console.error("Failed to connect:", error);
   }
 };
-async function name() {
-  const cursor = connectDB.db("ecommerce").Collection("products");
-  console.log(cursor);
-}
-name();
