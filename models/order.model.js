@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// Define the order schema
 const orderSchema = new mongoose.Schema(
     {
         userId: { 
@@ -9,7 +10,7 @@ const orderSchema = new mongoose.Schema(
         },
         productId: { 
             type: mongoose.Schema.Types.ObjectId, 
-            ref: "Product",
+            ref: "Product", 
             required: true 
         },
         description: { 
@@ -17,8 +18,6 @@ const orderSchema = new mongoose.Schema(
             required: true, 
             trim: true 
         },
-        image: { 
-            type: String},
         price: { 
             type: Number, 
             required: true, 
@@ -27,11 +26,13 @@ const orderSchema = new mongoose.Schema(
         status: { 
             type: String, 
             enum: ["pending", "processing", "shipped", "delivered", "cancelled"], 
-            default: "pending" 
+            default: "pending"
         }
     }, 
     { 
         timestamps: true 
     }
 );
+
+// Export the Order model
 export const Order = mongoose.model("Order", orderSchema);

@@ -1,6 +1,6 @@
 import { Product } from "../models/product.model.js";
 import createError from "http-errors";
-import { validateProduct} from "../middleware/validateProduct.js";
+import { validateProduct } from "../utils/validateProduct.js";
 import mongoose from "mongoose";
 
 const getAll = async(req,res, next) => {
@@ -32,17 +32,35 @@ const getSingle = async(req, res, next) => {
     }
 };
 
-const  createProduct = async(req,res, next)=>{
+const createProduct = async (req, res, next) => {
     try {
-        //#swagger.tags=['Product']
-        const newProduct = new Product(req.body);
-        await newProduct.save();
+        // #swagger.tags = ['Product']
 
+        // Validate product fields
+        const products = await validateProduct.validateAsync(req.body);
+
+        // Check for image file
+        if (!req.file) {
+            return next(createError(400, "Product image is required."));
+        }
+
+        const imageUrl = req.file.path; 
+
+        const newProduct = new Product({
+            name: products.name,
+            description: products.description,
+            image: imageUrl,
+            price: products.price
+        });
+
+        await newProduct.save();
         res.status(201).json(newProduct);
+
     } catch (error) {
-        next(createError(400, error.message || "Invalid product data"));
+        next(createError(400, error.details?.[0]?.message || error.message || "Invalid product data"));
     }
 };
+
 
 const updateProduct = async(req, res, next) => {
     try{
