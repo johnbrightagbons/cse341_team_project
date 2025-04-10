@@ -1,11 +1,2 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
+.env
 node_modules
-=======
-node_modules /
-.env
->>>>>>> 4e04c6c (Removed node_modules from repository)
-=======
-node_modules/
-.env
->>>>>>> 3533feb (create set UP Projects of ecommerce)

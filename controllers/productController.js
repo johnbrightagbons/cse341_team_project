@@ -1,13 +1,27 @@
-import { Product } from "../models/product.model.js"
-import createError from "http-errors"
-import validatedProduct from "../utils/validateProduc.js"
+const index = (req, res) => {
+  res.json("View All Products");
+};
 
+const show = (req, res) => {
+  res.json("Show one Product");
+};
 
-const  createProduct = async(req,res, next)=>{
-    try {
-      const product = await validatedProduct.validateAsync(req.body)
-    } catch (error) {
-        
-    }
-}
+const create = (req, res) => {
+  res.json("Create Product");
+};
 
+const update = (req, res) => {
+  res.json("Updating");
+};
+
+const destroy = (req, res) => {
+  res.json("Deleting");
+};
+
+module.exports = {
+  index,
+  show,
+  create,
+  update,
+  destroy,
+};

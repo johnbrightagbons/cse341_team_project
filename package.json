@@ -1,58 +1,26 @@
 {
   "name": "cse341_team_project",
   "version": "1.0.0",
-  "description": "",
-<<<<<<< HEAD
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-=======
+  "description": "E-commerce API",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.jsx",
-    "StartDev": "nodemon index.js"
->>>>>>> 4e04c6c (Removed node_modules from repository)
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/johnbrightagbons/cse341_team_project.git"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-<<<<<<< HEAD
-=======
-  "type": "module",
->>>>>>> 4e04c6c (Removed node_modules from repository)
-  "bugs": {
-    "url": "https://github.com/johnbrightagbons/cse341_team_project/issues"
-  },
-  "homepage": "https://github.com/johnbrightagbons/cse341_team_project#readme",
   "dependencies": {
-<<<<<<< HEAD
-    "body-parser": "^2.2.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
-    "express-session": "^1.18.1",
+    "fs": "^0.0.1-security",
+    "jsdoc": "^4.0.4",
     "mongodb": "^6.15.0",
-    "passport": "^0.7.0",
-    "passport-github2": "^0.1.12",
-    "swagger-autogen": "^2.23.7",
-=======
-    "@hapi/joi": "^17.1.1",
-    "cookieparser": "^0.1.0",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "http-errors": "^2.0.0",
-    "mongodb": "^6.15.0",
-    "mongoose": "^8.13.0",
-    "multer": "^1.4.5-lts.2",
-    "nodemon": "^3.1.9",
->>>>>>> 4e04c6c (Removed node_modules from repository)
+    "mongoose": "^8.13.2",
+    "swagger": "^0.7.5",
+    "swagger-docs": "^0.0.0-alpha2",
+    "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
   }
 }
