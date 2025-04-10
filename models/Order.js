@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
+mongoose.connect(process.env.MONGODB_URI);
 
 const orderSchema = new mongoose.Schema(
     {
@@ -34,4 +35,4 @@ const orderSchema = new mongoose.Schema(
         timestamps: true 
     }
 );
-export const Order = mongoose.model("Order", orderSchema);
+module.exports = mongoose.model("Order", orderSchema);

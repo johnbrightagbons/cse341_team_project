@@ -1,4 +1,6 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
+mongoose.connect(process.env.MONGODB_URI);
+
 const userSchema = new mongoose.Schema(
   {
     // to make our app easy to use and personalized lets replace username with fullname
@@ -13,4 +15,4 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export const User = mongoose.model("User", userSchema);
+module.exports = mongoose.model("User", userSchema);

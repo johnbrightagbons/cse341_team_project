@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
+mongoose.connect(process.env.MONGODB_URI);
 
 const paymentSchema = new mongoose.Schema(
     {
@@ -38,4 +39,4 @@ const paymentSchema = new mongoose.Schema(
         timestamps: true 
     }
 );
-export const Payment = mongoose.model("Payment", paymentSchema);
+module.exports = mongoose.model("Payment", paymentSchema);
