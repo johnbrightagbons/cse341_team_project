@@ -1,37 +1,37 @@
-const routes = require('express').Router();
-const UserController = require("../controllers/userController")
-const OrderController = require("../controllers/orderController")
-const PaymentController = require("../controllers/paymentController")
-const ProductController = require("../controllers/productController")
+import { Router } from "express";
+import UserController from "../controllers/userController";
+import OrderController from "../controllers/orderController";
+import PaymentController from "../controllers/paymentController";
+import ProductController from "../controllers/productController";
 
 // CREATE
-routes.post("/users", UserController.create)
-routes.post("/orders", OrderController.create)
-routes.post("/payments", PaymentController.create)
-routes.post("/products", ProductController.create)
+Router.post("/users", UserController.create);
+Router.post("/orders", OrderController.create);
+Router.post("/payments", PaymentController.create);
+Router.post("/products", ProductController.create);
 
 // READ Many
-routes.get("/users", UserController.index)
-routes.get("/orders", OrderController.index)
-routes.get("/payments", PaymentController.index)
-routes.get("/products", ProductController.index)
+Router.get("/users", UserController.index);
+Router.get("/orders", OrderController.index);
+Router.get("/payments", PaymentController.index);
+Router.get("/products", ProductController.index);
 
-// READ ONE
-routes.get("/users/{:id}", UserController.show)
-routes.get("/orders/{:id}", OrderController.show)
-routes.get("/payments/{:id}", PaymentController.show)
-routes.get("/products/{:id}", ProductController.show)
+// READ ONE BY ID
+Router.get("/users/{:id}", UserController.show);
+Router.get("/orders/{:id}", OrderController.show);
+Router.get("/payments/{:id}", PaymentController.show);
+Router.get("/products/{:id}", ProductController.show);
 
 // UPDATE
-routes.put("/users/{:id}", UserController.update)
-routes.put("/orders/{:id}", OrderController.update)
-routes.put("/payments/{:id}", PaymentController.update)
-routes.put("/products/{:id}", ProductController.update)
+Router.put("/users/{:id}", UserController.update);
+Router.put("/orders/{:id}", OrderController.update);
+Router.put("/payments/{:id}", PaymentController.update);
+Router.put("/products/{:id}", ProductController.update);
 
 // DELETE
-routes.delete("/users/{:id}", UserController.destroy)
-routes.delete("/orders/{:id}", OrderController.destroy)
-routes.delete("/payments/{:id}", PaymentController.destroy)
-routes.delete("/products/{:id}", ProductController.destroy)
+Router.delete("/users/{:id}", UserController.destroy);
+Router.delete("/orders/{:id}", OrderController.destroy);
+Router.delete("/payments/{:id}", PaymentController.destroy);
+Router.delete("/products/{:id}", ProductController.destroy);
 
-module.exports = routes;
+module.exports = Router;

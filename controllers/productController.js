@@ -1,27 +1,22 @@
-const index = (req, res) => {
-  res.json("View All Products");
-};
+class ProductController {
+  static index = (req, res) => {
+    res.json("View All Users");
+  };
 
-const show = (req, res) => {
-  res.json("Show one Product");
-};
+  static show = (req, res) => {
+    res.json("Show one User");
+  };
 
-const create = (req, res) => {
-  res.json("Create Product");
-};
+  static create = (req, res) => {
+    res.json("Create User");
+  };
 
-const update = (req, res) => {
-  res.json("Updating");
-};
+  static update = (req, res) => {
+    res.json("Updating");
+  };
 
-const destroy = (req, res) => {
-  res.json("Deleting");
-};
-
-module.exports = {
-  index,
-  show,
-  create,
-  update,
-  destroy,
-};
+  static destroy = (req, res) => {
+    res.json("Deleting");
+  };
+}
+module.exports = ProductController;
