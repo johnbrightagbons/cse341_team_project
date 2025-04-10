@@ -14,7 +14,7 @@
 
  ## 3 you can export files like  export{function , etc... }
  
- ## 4. to  read docs : https://cse341-team-project-1.onrender.com/api-docs
+ ## 4. to  read docs : http://localhost:5002/api-docs/
 
 
 
