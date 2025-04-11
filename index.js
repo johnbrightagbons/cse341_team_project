@@ -16,7 +16,7 @@ passport.use(
     {
       clientID: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      callbackURL: process.env.callbackURL,
+      callbackURL: "https://cse341-team-project-jmne.onrender.com/dashboard",
     },
     function (accessToken, refreshToken, profile, done) {
       // Save the user profile to the session or database
