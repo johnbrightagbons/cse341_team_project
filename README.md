@@ -4,7 +4,7 @@
  ## Install all the packages
 
  #### 👉👉 1. [npm install cors dotenv express fs jsdoc mongodb mongoose swagger swagger-jsdoc swagger-ui-express --save]
- #### 👉👉 2. create a file [.env] and paste this [MONGO_URL=""] in the file and save.
+ #### 👉👉 2. create a file [.env] and paste this [MONGODB_URI=""] in the file and save.
 
 
 
