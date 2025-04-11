@@ -4,7 +4,7 @@
     "info": {
       "title": "My E-commerce API",
       "version": "1.0.0",
-      "description": "This API interacts with a MongoDB database collections."
+      "description": "This API interacts with four MongoDB database collections."
     },
     "servers": [{ "url": "https://ecommerce-zsc6.onrender.com" }],
     "tags": [
