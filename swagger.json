@@ -6,7 +6,7 @@
       "version": "1.0.0",
       "description": "This API interacts with a MongoDB database collections."
     },
-    "servers": [{ "url": "https://cse341-team-project-1.onrender.com" }],
+    "servers": [{ "url": "https://ecommerce-zsc6.onrender.com" }],
     "tags": [
       {
         "name": "Products",
