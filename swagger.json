@@ -731,7 +731,9 @@
                 "delivered",
                 "cancelled"
               ]
-            }
+            },
+            "createdAt": "date",
+            "updatedAt": "date"
           },
           "example": {
             "orderId": "67e3da44faeaaa489d98ceff",
@@ -782,7 +784,9 @@
                 "delivered",
                 "cancelled"
               ]
-            }
+            },
+            "createdAt": "date",
+            "updatedAt": "date"
           },
           "example": {
             "userId": "67e3da44faeaaa489d98ceff",
