@@ -1,22 +1,66 @@
-const index = (req, res) => {
-  res.json("View All Orders");
-};
-const show = (req, res) => {
-  res.json("Show one Order");
-};
-const create = (req, res) => {
-  res.json("Create Order");
-};
-const update = (req, res) => {
-  res.json("Updating");
-};
-const destroy = (req, res) => {
-  res.json("Deleting");
-};
-module.exports = {
-  index,
-  show,
-  create,
-  update,
-  destroy,
-};
+const Order = require("../models/Order");
+
+class OrderController {
+  static index = async (req, res) => {
+    try {
+      const orders = await Order.find();
+      return res.status(200).json(orders);
+    } catch (error) {
+      return res.status(500).json("Server Error");
+    }
+  };
+
+  static show = async (req, res) => {
+    try {
+      Order.findById(req.params.id)
+        .then((order) => {
+          return res.status(200).json(order);
+        })
+        .catch(() => {
+          return res.status(404).json("Order not found");
+        });
+    } catch {
+      return res.status(500).json("Server Error");
+    }
+  };
+
+  static create = async (req, res) => {
+    try {
+      await Order.insertOne(req.body);
+      return res.status(200).json("Order created successfully");
+    } catch (error) {
+      return res.status(500).json(error.message);
+    }
+  };
+
+  static update = async (req, res) => {
+    try {
+      await Order.findById(req.params.id)
+        .then(async () => {
+          await Order.findByIdAndUpdate(req.params.id, req.body);
+          return res.status(200).json("Order updated successfully");
+        })
+        .catch(() => {
+          return res.status(404).json("Order not found");
+        });
+    } catch (error) {
+      return res.status(500).json("Server Error");
+    }
+  };
+
+  static destroy = async (req, res) => {
+    try {
+      const checkId = await Order.findById(req.params.id)
+        .then(async () => {
+          await Order.findByIdAndDelete(req.params.id);
+          return res.status(200).json("Order deleted successfully");
+        })
+        .catch(() => {
+          return res.status(404).json("Order not found");
+        });
+    } catch (error) {
+      return res.status(500).json("Server Error");
+    }
+  };
+}
+module.exports = OrderController;

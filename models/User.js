@@ -1,18 +1,18 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
 mongoose.connect(process.env.MONGODB_URI);
 
-const userSchema = new mongoose.Schema(
-  {
-    // to make our app easy to use and personalized lets replace username with fullname
-    fullname: { type: String, required: true },
-    email: { type: String, required: true },
-    passwrod: { type: String, required: true },
-    role: {
-      type: String,
-      enum: ["client", "admin"],
-    },
+const userSchema = new mongoose.Schema({
+  // to make our app easy to use and personalized lets replace username with fullname
+  fullname: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  role: {
+    type: String,
+    enum: ["client", "admin"],
   },
-  { timestamps: true }
-);
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
 
 module.exports = mongoose.model("User", userSchema);

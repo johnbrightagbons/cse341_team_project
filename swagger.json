@@ -682,9 +682,9 @@
             }
           },
           "example": {
-            "fullnames": "Joseph Smith",
+            "fullname": "Joseph Smith",
             "email": "josephsmith@celestial.being",
-            "password": "pass1234",
+            "password": "$2b$10$sTdM4rPQcYh7vUaO0nXzKu",
             "role": "admin"
           }
         },
