@@ -645,9 +645,8 @@
               "type": "string",
               "description": "Contact's favorite color (e.g., red, blue, green)"
             },
-            "timestamps": {
-              "type": "date"
-            }
+            "createdAt": "date",
+            "updatedAt": "date"
           },
           "example": {
             "name": "Trio Juice",
@@ -676,10 +675,8 @@
               "type": "enum",
               "description": ["client", "admin"]
             },
-            "timestamps": {
-              "type": "string",
-              "description": "Birth date in DD/MM/YYYY format (e.g., 23/12/1805)"
-            }
+            "createdAt": "date",
+            "updatedAt": "date"
           },
           "example": {
             "fullname": "Joseph Smith",
