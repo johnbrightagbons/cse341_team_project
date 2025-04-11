@@ -18,7 +18,7 @@ import session from "express-session";
 import passport from "passport";
 import { Strategy as GitHubStrategy } from "passport-github2";
 import loginRoutes from "./routes/login.js";
-
+import routes from "./routes/index.js";
 
 dotenv.config();
 
@@ -27,6 +27,11 @@ const PORT = process.env.PORT || 5002;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+//Get routes
+app.use("/", routes);
+
+
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Use logSession middleware to log session on every request
@@ -41,9 +46,6 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
-
-//General login session
-app.use("/login", loginRoutes);
 
 
 // Initialize passport
@@ -73,11 +75,6 @@ passport.use(new GitHubStrategy({
 const swaggerFilePath = path.resolve("swagger.json");
 const swaggerDocument = JSON.parse(fs.readFileSync(swaggerFilePath, "utf-8"));
 
-//routers
-app.use("/user",userRouter)
-app.use("/product", productRouter)
-app.use("/order",orderRouter)
-app.use("/payment",paymentRouter)
 
 //swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
