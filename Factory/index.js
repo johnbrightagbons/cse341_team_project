@@ -1,7 +1,24 @@
-const User = require("../models/User");
-const Product = require("../models/Product");
-const Payment = require("../models/Payment");
-const Order = require("../models/Order");
+const { MongoClient, ObjectId } = require("mongodb");
+require("dotenv").config();
+
+// Initialize connection I could not use the class constructor because of the async function required for smooth
+async function connect() {
+  try {
+    const client = await MongoClient.connect(process.env.MONGODB_URI);
+    console.log("Connected to MongoDB");
+    return client.db("ecommerce");
+  } catch (error) {
+    console.error("MongoDB connection error:", error);
+    throw error;
+  }
+}
+
+// CREATE Multiple Education posts
+async function createMany(insertDataArray, collectionName) {
+  const collection = (await connect()).collection(collectionName);
+  const result = await collection.insertMany(insertDataArray);
+  return result;
+}
 
 async function main() {
   const usersData = [
@@ -519,26 +536,16 @@ async function main() {
     },
   ];
 
-  // puting some sample data in the collects
-  let i = 0;
-  usersData.forEach(async(userData) => {
-    (await User.insertOne(userData)).save().then(()=>{console.log(i++);})
-  });
+  createMany(usersData, "users");
   console.log("Users seeded successfully!");
 
-  productsData.forEach(async(productData) => {
-    (await Product.insertOne(productData)).save().then(()=>{console.log(i++);});
-  });
+  createMany(productsData, "products");
   console.log("Products seeded successfully!");
 
-  paymentsData.forEach(async(paymentData) => {
-    (await Payment.insertOne(paymentData)).save().then(()=>{console.log(i++);});
-  });
+  createMany(paymentsData, "payments");
   console.log("Payments seeded successfully!");
 
-  ordersData.forEach(async(orderData) => {
-   (await Order.insertOne(orderData)).save().then(()=>{console.log(i++);});
-  });
+  createMany(ordersData, "orders");
   console.log("Orders seeded successfully!");
 }
 main();

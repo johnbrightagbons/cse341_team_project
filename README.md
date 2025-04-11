@@ -5,6 +5,7 @@
 
  #### 👉👉 1. [npm install cors dotenv express fs jsdoc mongodb mongoose swagger swagger-jsdoc swagger-ui-express --save]
  #### 👉👉 2. create a file [.env] and paste this [MONGODB_URI=""] in the file and save.
+ #### 👉👉 3. to seed your database run this command[node Factory/index.js].
 
 
 
@@ -13,7 +14,7 @@
 
  ### 3 you can export files like  export{function , etc... }
  
- ### 4. to  read docs : http://localhost:5002/api-docs/
+ ### 4. to  read docs : https://ecommerce-zsc6.onrender.com
 
 
 
