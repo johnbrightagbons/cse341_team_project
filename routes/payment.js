@@ -1,6 +1,6 @@
 import express from "express"
 import { getAll, getSingle, createPayment, updatePayment, deletePayment} from "../controllers/paymentController.js";
-import { validatePayment } from "../middleware/validatePayment.js";
+import { validatePayment } from "../utils/validatePayment.js";
 
 const  router = express.Router();
 

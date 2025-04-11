@@ -21,6 +21,23 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+// Use logSession middleware to log session on every request
+app.use(logSession); 
+
+// Use body-parser middleware to parse JSON request bodies
+app.use(bodyParser.json());
+
+// Set up session handling
+app.use(session({
+    secret: "secret", 
+    resave: false,
+    saveUninitialized: true
+}));
+
+// Initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(cors({
     origin: '*', 
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -30,6 +47,16 @@ app.options('*', cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+// Set up GitHub OAuth strategy
+passport.use(new GitHubStrategy({
+    clientID: process.env.GITHUB_CLIENT_ID,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    callbackURL: process.env.CALLBACK_URL
+}, (accessToken, refreshToken, profile, done) => {
+    return done(null, profile);
+}));
+
 
 const swaggerFilePath = path.resolve("swagger.json");
 const swaggerDocument = JSON.parse(fs.readFileSync(swaggerFilePath, "utf-8"));
