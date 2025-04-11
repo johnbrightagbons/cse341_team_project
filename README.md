@@ -14,7 +14,7 @@
 
  ### 3 you can export files like  export{function , etc... }
  
- ### 4. to  read docs : https://ecommerce-zsc6.onrender.com
+ ### 4. to  read docs : https://cse341-team-project-jmne.onrender.com/api-docs/
 
 
 
