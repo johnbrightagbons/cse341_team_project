@@ -17,7 +17,11 @@ async function connect() {
 async function createMany(insertDataArray, collectionName) {
   const collection = (await connect()).collection(collectionName);
   const result = await collection.insertMany(insertDataArray);
-  return result;
+
+  // Close the connection
+  const db = await connect();
+  await db.client.close();
+  console.log("Database connection closed.");
 }
 
 async function main() {
@@ -547,10 +551,5 @@ async function main() {
 
   createMany(ordersData, "orders");
   console.log("Orders seeded successfully!");
-
-  // Close the connection
-  const db = await connect();
-  await db.client.close();
-  console.log("Database connection closed.");
 }
 main();
