@@ -99,20 +99,23 @@ app.use((err, req, res, next) => {
 
 const startServer = async () => {
     try {
-        await connectDB();
+      await connectDB();
+      
+      if (process.env.NODE_ENV !== 'production') {
         app.listen(PORT, () => {
-            console.log(`Server is running on port ${PORT}`);
+          console.log(`Server is running on port ${PORT}`);
         });
+      }
     } catch (error) {
-        console.error("Database connection failed:", error.message);
-        process.exit(1);
+      console.error("Database connection failed:", error.message);
+      process.exit(1);
     }
-};
-
+  };
+  
 if (process.env.NODE_ENV !== 'test') {
     startServer();
   }
   
   export default app;
   
-startServer();
+
