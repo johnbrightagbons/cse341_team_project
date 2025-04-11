@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboad</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .logout-card {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .logout-card h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .logout-card h1 span {
+            color: #007BFF;
+            font-weight: bold;
+            font-size: 36px;
+            display: block;
+        }
+        .logout-card p {
+            margin-bottom: 20px;
+        }
+        .logout-card a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+            padding: 10px 30px;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        .logout-card a:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        @media (max-width: 600px) {
+            .logout-card {
+                width: 90%;
+                margin: 20px auto;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <div class="logout-card">
+        <h1>Welcome to the <span>E-commerce API</span></h1>
+        <p>You have successfully logged in!</p>
+        <a href="/auth/logout">Logout</a>
+    </div>
+</body>
+</html>

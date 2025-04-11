@@ -17,6 +17,7 @@ const productSchema = new mongoose.Schema({
   price: {
     type: Number,
     required: true,
+    MinKey: 0.01,
   },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },

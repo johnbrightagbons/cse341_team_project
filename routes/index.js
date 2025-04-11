@@ -4,6 +4,7 @@ const UserController = require("../controllers/userController");
 const OrderController = require("../controllers/orderController");
 const PaymentController = require("../controllers/paymentController");
 const ProductController = require("../controllers/productController");
+const express = require("express");
 
 // AUTHENTICATION
 routes.get("/auth/github", passport.authenticate("github", { scope: ['profile'] }));
@@ -16,7 +17,7 @@ routes.get(
 );
 routes.get("/auth/logout", (req, res) => {
   req.logout();
-  res.redirect("/");
+  res.redirect("/auth/github");
 });
 routes.get("/auth/user", (req, res) => {
   if (req.isAuthenticated()) {
@@ -25,8 +26,24 @@ routes.get("/auth/user", (req, res) => {
     res.status(401).json({ message: "Unauthorized" });
   }
 });
-routes.get("/auth/login", (req, res) => {
-  res.json({ message: "Login with GitHub" });
+routes.get("/", (req, res) => {
+  // Check if user is authenticated
+  if (req.isAuthenticated()) {
+    // User is authenticated, redirect to dashboard
+    return res.redirect("/dashboard");
+  }
+  // User is not authenticated, redirect to login page
+  res.sendFile("/views/login.html", { root: __dirname });
+});
+
+//check if user is authenticated
+routes.get('/dashboard', (req, res) => {
+  if (req.isAuthenticated()) {
+    res.sendFile("/views/dashboard.html", { root: __dirname });
+  }
+  else {
+    res.redirect("/");
+  }
 });
 
 // CREATE
