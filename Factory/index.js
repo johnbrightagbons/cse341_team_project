@@ -547,5 +547,10 @@ async function main() {
 
   createMany(ordersData, "orders");
   console.log("Orders seeded successfully!");
+
+  // Close the connection
+  const db = await connect();
+  await db.client.close();
+  console.log("Database connection closed.");
 }
 main();
