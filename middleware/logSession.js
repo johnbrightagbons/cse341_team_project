@@ -1,6 +1,6 @@
 const logSession = (req, res, next) => {
-    console.log("Session:", req.session);
+    console.log("Session data:", req.session);
     next();
 };
 
-module.exports = logSession;
+export default logSession;

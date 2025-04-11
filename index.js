@@ -11,7 +11,13 @@ import orderRouter from "./routes/order.js"
 import createError from "http-errors";
 import swaggerUi from "swagger-ui-express";
 import swaggerRouter from "./routes/swagger.js";
-import { connectDB } from "./config/db.js"
+import { connectDB } from "./config/db.js";
+import logSession from './middleware/logSession.js';
+import bodyParser from "body-parser";
+import session from "express-session";
+import passport from "passport";
+import { Strategy as GitHubStrategy } from "passport-github2";
+
 
 dotenv.config();
 
