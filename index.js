@@ -17,6 +17,7 @@ import bodyParser from "body-parser";
 import session from "express-session";
 import passport from "passport";
 import { Strategy as GitHubStrategy } from "passport-github2";
+import loginRoutes from "./routes/login.js";
 
 
 dotenv.config();
@@ -39,6 +40,10 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
+
+//General login session
+app.use("/login", loginRoutes);
+
 
 // Initialize passport
 app.use(passport.initialize());
@@ -103,4 +108,10 @@ const startServer = async () => {
     }
 };
 
+if (process.env.NODE_ENV !== 'test') {
+    startServer();
+  }
+  
+  export default app;
+  
 startServer();
