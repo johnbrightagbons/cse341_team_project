@@ -7,10 +7,11 @@ const ProductController = require("../controllers/productController");
 
 // Auth Middleware this will impliment protection on the route
 const isAuth = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    return next();
+  if (req.user) {
+    next();
+  } else {
+    res.redirect("/login");
   }
-  res.redirect("/login");
 };
 
 // AUTHENTICATION
@@ -27,11 +28,12 @@ routes.get(
 );
 routes.get("/logout", (req, res) => {
   req.logout((err) => {
-    if (err) {
-      return next(err);
-    }
-    res.redirect("/login");
+    if (err) return next(err);
+    // Clear the session data
+    req.session = null; // Clear the session data
+    console.log("User logged out successfully");
   });
+  res.redirect("/login");
 });
 
 routes.get("/", isAuth, (req, res) => {
@@ -44,12 +46,9 @@ routes.get("/dashboard", isAuth, (req, res) => {
 
 routes.get("/login", (req, res) => {
   if (req.user) {
-    return res.json(req.user);
+    return res.redirect("/dashboard");
   }
-  //   return res.redirect("/dashboard");
-  // }
   res.sendFile(__dirname + "/views/login.html");
-  // res.json(req.user);
 });
 
 // CREATE
