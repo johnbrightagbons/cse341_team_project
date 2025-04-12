@@ -40,11 +40,13 @@ routes.get("/dashboard", isAuth, (req, res) => {
 });
 
 routes.get("/login", (req, res) => {
-  // if (req.user) {
+  if (req.user) {
+    res.json(req.user);
+  }
   //   return res.redirect("/dashboard");
   // }
   // res.sendFile(__dirname + "/views/login.html");
-  res.json(req.user);
+  // res.json(req.user);
 });
 
 // CREATE
