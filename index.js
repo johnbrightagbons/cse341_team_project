@@ -6,7 +6,7 @@ import express from "express";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import cors from "cors";
+import cors from 'cors';
 import session from "express-session";
 import bodyParser from "body-parser";
 import createError from "http-errors";
@@ -76,8 +76,7 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
+app.use(cors());
 
 // Serialize user data into session
 passport.serializeUser((user, done) => {
