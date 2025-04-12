@@ -1,7 +1,8 @@
 // config/passport.js or auth/passport.js
 import passport from "passport";
 import { Strategy as GitHubStrategy } from "passport-github2";
-import { User } from "../models/User.js"; // Adjust path as needed
+import {User} from '../models/user.model.js';
+
 
 passport.use(new GitHubStrategy({
   clientID: process.env.GITHUB_CLIENT_ID,
