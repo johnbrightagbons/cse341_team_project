@@ -1,12 +1,12 @@
 const isAuthenticated = (req, res, next) => {
-  if (req.session.user === undefined) {
-    return res.redirect("/login");
+  if (req.user === undefined) {
+    return res.sendFile(__dirname + "/views/login.html");
   }
   next();
 };
 const notAuthenticated = (req, res, next) => {
-  if (req.session.user === undefined) {
-    return res.redirect("/dashboard");
+  if (req.user === undefined) {
+    return res.sendFile(__dirname+ "/views/dashboard.html");
   }
   next();
 };
