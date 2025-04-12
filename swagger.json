@@ -98,6 +98,24 @@
         }
       }
     },
+    "delete": { 
+        "tags": ["products"],    
+        "summary": "Delete a Product by ID ",        
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Successfully deleted the product" },
+          "404": { "description": "Product not Found" },
+          "500": { "description": "Internal Server Error"}
+        }
+      }
+    }, 
 
     "/user/": {
       "get": {

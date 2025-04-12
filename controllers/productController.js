@@ -36,19 +36,15 @@ const createProduct = async (req, res, next) => {
     try {
         //#swagger.tags = ['Product']      
 
-        // Check for image file
-        if (!req.file) {
-            return next(createError(400, "Product image is required."));
-        }
+        const imageUrl = req.file ? req.file.path : null;
 
-        const imageUrl = req.file.path; 
+        const { name, description, price } = req.body;
 
-        //Create New product
         const newProduct = new Product({
-            name: products.name,
-            description: products.description,
-            image: imageUrl,
-            price: products.price
+            name,
+            description,
+            image: imageUrl, 
+            price
         });
 
         await newProduct.save();
