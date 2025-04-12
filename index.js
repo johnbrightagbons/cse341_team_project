@@ -25,10 +25,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.serializeUser(function (user, done) {
-  done(null, user.id);
+  done(null, user)
 });
 passport.deserializeUser(function (id, done) {
-  done(null, id);
+  done(null, user);
 });
 
 passport.use(
@@ -39,9 +39,9 @@ passport.use(
       callbackURL:
         "https://cse341-team-project-jmne.onrender.com/auth/github/callback",
     },
-    function (accessToken, refreshToken, profile, done) {
+    function (accessToken, refreshToken, user, done) {
       // Save the user profile to the session or database
-      return done(null, profile);
+      return done(null, user);
     }
   )
 );
