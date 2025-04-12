@@ -10,7 +10,7 @@ const { isAuthenticated } = require("../middleware/auth");
 
 // login
 routes.get(
-  "/auth/github",
+  "/login",
   passport.authenticate("github", { scope: ["user:email"] })
 );
 
@@ -39,13 +39,6 @@ routes.get("/dashboard", isAuthenticated, (req, res) => {
 });
 
 // end of protected routes
-
-routes.get("/login", (req, res) => {
-  if (req.user !== undefined) {
-    return res.redirect("/dashboard");
-  }
-  res.sendFile(__dirname + "/views/login.html");
-});
 
 routes.get("/logout", (req, res) => {
   req.logOut(() => {
