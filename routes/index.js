@@ -23,6 +23,9 @@ routes.get(
   "/auth/github/callback",
   passport.authenticate("github", { failureRedirect: "/login" }),
   function (req, res) {
+    // start a session and save the user profile to the session
+    req.session.user = req.user; // Save the user profile to the session
+    console.log("User logged in successfully", req.user);
     res.redirect("/");
   }
 );
