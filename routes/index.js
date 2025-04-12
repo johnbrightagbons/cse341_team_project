@@ -26,7 +26,7 @@ routes.get(
     // start a session and save the user profile to the session
     req.session.user = req.user;
     console.log("User logged in successfully");
-    res.redirect("/");
+    res.redirect("/dashboard");
   }
 );
 routes.get("/logout", (req, res) => {
