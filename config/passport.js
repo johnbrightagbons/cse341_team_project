@@ -1,8 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-
-
 // config/passport.js or auth/passport.js
 import passport from "passport";
 import { Strategy as GitHubStrategy } from "passport-github2";

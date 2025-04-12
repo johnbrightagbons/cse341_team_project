@@ -23,6 +23,7 @@ import swaggerRouter from "./routes/swagger.js";
 import githubAuthRouter from "./routes/githubAuth.js"
 import routes from "./routes/index.js";
 
+
 const app = express();
 const PORT = process.env.PORT || 5002;
 
@@ -30,15 +31,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 
-
-
-// --- Middleware ---
-app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
-app.options('*', cors());
 
 app.use(bodyParser.json());
 app.use(express.json());
@@ -56,6 +48,50 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Set CORS headers
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader(
+      'Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, Accept, z-key'
+  );
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  next();
+});
+
+// --- Middleware ---
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+app.options('*', cors());
+
+// Serialize user data into session
+passport.serializeUser((user, done) => {
+  done(null, user);  
+});
+
+// Deserialize user data from session
+passport.deserializeUser((user, done) => {    
+  done(null, user); 
+});
+
+// Root route - check session status
+app.get('/', (req, res) => {
+  res.send(req.session.user !== undefined ? 
+      `Logged in as ${req.session.user.displayName}` : "Logged out");
+});
+
+
+// GitHub OAuth callback route
+app.get('/github/callback', 
+  passport.authenticate('github', { failureRedirect: '/api-docs'}), 
+  (req, res) => {
+      req.session.user = req.user;
+      res.redirect('/');
+  }
+);
 
 // --- Routes ---
 app.use("/", routes);
@@ -71,6 +107,7 @@ app.use("/products", productRouter);
 app.use("/payment", paymentRouter);
 app.use("/orders", orderRouter);
 
+
 // 404 & Error Handler
 app.use((req, res, next) => {
   next(createError(404, "Not found"));
@@ -82,6 +119,7 @@ app.use((err, req, res, next) => {
     message: err.message || "Internal Server Error",
   });
 });
+
 
 // --- Start Server ---
 const startServer = async () => {

@@ -1,4 +1,4 @@
-import express from "express";
+/*import express from "express";
 
 const routes = express.Router();
 
@@ -32,4 +32,4 @@ routes.post("/", (req, res) => {
     return res.status(401).json({ message: "Invalid credentials" });
 });
 
-export default routes;
+export default routes;*/

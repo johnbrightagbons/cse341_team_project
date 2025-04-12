@@ -6,12 +6,12 @@ import userRouter from "./user.js";
 import productRouter from "./products.js";
 import paymentRouter from "./payment.js";
 import orderRouter from "./order.js";
-import loginRoutes from "./login.js";
+//import loginRoutes from "./login.js";
 
 const routes = express.Router();
 
 // Manual login
-routes.use("/auth", loginRoutes);
+//routes.use("/auth", loginRoutes);
 
 // GitHub OAuth login
 routes.get("/login", passport.authenticate("github"));
