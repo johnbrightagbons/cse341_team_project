@@ -21,21 +21,20 @@ const orderSchema = Joi.object({
         .required(),
 
     description: Joi.string().trim().required(),
-    
     image: Joi.string().uri().optional(), 
-    
     price: Joi.number().min(0).required(), 
-    
-    status: Joi.string().valid("pending", "processing", "shipped", "delivered", "cancelled").optional(), // Defaults to "pending" in DB
+    status: Joi.string().valid("pending", "processing", "shipped", "delivered", "cancelled").optional(),
 });
-
 
 const validateOrder = async (req, res, next) => {
     try {
         await orderSchema.validateAsync(req.body, { abortEarly: false });
         next();
     } catch (error) {
-        return res.status(400).json({ success: false, message: error.details.map(err => err.message) });
+        return res.status(400).json({
+            success: false,
+            message: error.details.map(err => err.message)
+        });
     }
 };
 

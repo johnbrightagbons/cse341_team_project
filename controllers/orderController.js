@@ -52,7 +52,7 @@ const createOrder = async (req, res, next) => {
     try {
         // #swagger.tags = ['Order']
 
-        // Validate the order data
+        // Validate the order data        
         const orders = await validateOrder.validateAsync(req.body);
         if (!orders || !productId) {
             return next(createError(400, "All fields are required."));

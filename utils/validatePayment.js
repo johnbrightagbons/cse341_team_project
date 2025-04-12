@@ -44,4 +44,4 @@ const validatePayment = async (req, res, next) => {
     }
 };
 
-export { validatePayment };
+export { validatePayment , paymentSchema };

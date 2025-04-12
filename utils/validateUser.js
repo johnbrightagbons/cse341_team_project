@@ -8,7 +8,7 @@ const userSchema = Joi.object({
     role: Joi.string().valid("client", "admin").optional()
 });
 
-export const validateUser = async (req, res, next) => {
+const validateUser = async (req, res, next) => {
     try {
         await userSchema.validateAsync(req.body);
         next(); 
@@ -16,3 +16,5 @@ export const validateUser = async (req, res, next) => {
         next(createError(400, error.details[0].message));
     }
 };
+
+export{ validateUser, userSchema}

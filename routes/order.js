@@ -1,7 +1,7 @@
 import express from "express"
-import { getAll, getSingle, createOrder, updateOrder, deleteOrder} from "../controllers/orderController.js";
+import { getAll, getSingle, createOrder, updateOrder, deleteOrder } from "../controllers/orderController.js";
 import { validateOrder } from "../utils/validateOrder.js";
-import { isAuthenticated} from "../middleware/authMiddleware.js" ;
+import { isAuthenticated } from "../middleware/authMiddleware.js" ;
 const  router = express.Router();
 
 router.get("/", getAll);

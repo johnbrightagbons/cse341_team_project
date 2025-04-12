@@ -1,6 +1,7 @@
 import { Product } from "../models/product.model.js";
 import createError from "http-errors";
 import mongoose from "mongoose";
+import { validateProduct } from "../utils/validateProduct.js";
 
 const getAll = async(req,res, next) => {
     try {
@@ -33,10 +34,7 @@ const getSingle = async(req, res, next) => {
 
 const createProduct = async (req, res, next) => {
     try {
-        // #swagger.tags = ['Product']
-
-        // Validate product fields
-        const products = await validateProduct.validateAsync(req.body);
+        //#swagger.tags = ['Product']      
 
         // Check for image file
         if (!req.file) {
@@ -45,6 +43,7 @@ const createProduct = async (req, res, next) => {
 
         const imageUrl = req.file.path; 
 
+        //Create New product
         const newProduct = new Product({
             name: products.name,
             description: products.description,
@@ -65,7 +64,7 @@ const updateProduct = async (req, res, next) => {
     try {
       //#swagger.tags=['Product']
       const { id } = req.params;
-  
+        
       if (!mongoose.Types.ObjectId.isValid(id)) {
         return next(createError(400, "Invalid product ID"));
       }
