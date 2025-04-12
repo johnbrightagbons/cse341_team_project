@@ -25,7 +25,6 @@ routes.get(
   function (req, res) {
     // start a session and save the user profile to the session
     req.session.user = req.user; // Save the user profile to the session
-    console.log("User logged in successfully", req.user);
     res.redirect("/");
   }
 );
@@ -44,11 +43,12 @@ routes.get("/", isAuth, (req, res) => {
 });
 
 routes.get("/dashboard", (req, res) => {
-  // res.sendFile(__dirname + "/views/dashboard.html");
-  //send a json response with the user data
-  res.json({
-    user: req.user,
-  });
+  if (!req.user) {
+    return res.redirect("/login");
+  }
+  // check if the user is authenticated and has a session
+
+  res.sendFile(__dirname + "/views/dashboard.html");
 });
 
 routes.get("/login", (req, res) => {
