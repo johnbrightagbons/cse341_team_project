@@ -40,8 +40,12 @@ routes.get("/", isAuth, (req, res) => {
   res.redirect("/dashboard");
 });
 
-routes.get("/dashboard", isAuth, (req, res) => {
-  res.sendFile(__dirname + "/views/dashboard.html");
+routes.get("/dashboard", (req, res) => {
+  // res.sendFile(__dirname + "/views/dashboard.html");
+  //send a json response with the user data
+  res.json({
+    user: req.user,
+  });
 });
 
 routes.get("/login", (req, res) => {
