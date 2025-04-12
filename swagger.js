@@ -5,7 +5,7 @@ const doc = {
     title: 'My E-commerce Api ',
     description: 'E-commerce  API',
   },
-  host:  process.env.HOST || 'https://cse341-team-project-zg01.onrender.com',
+  host: process.env.HOST || 'https://cse341-team-project-zg01.onrender.com',
   schemes: ['https'],
 };
 

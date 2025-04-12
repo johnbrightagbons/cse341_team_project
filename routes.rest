@@ -1,32 +1,30 @@
 #get all
- GET http://localhost:5002/login
+ GET http://localhost:5002/user
 
 
 ###get Single
-GET http://localhost:5002/api/order/67f01f0f8f3558d611068ceb
+GET http://localhost:5002/user/67fa94b8c5c35cec5637f5b8
 
 
 ###put product
-PUT http://localhost:5002/api/order/67f01f0f8f3558d611068ceb
+PUT http://localhost:5002/user/67fa94b8c5c35cec5637f5b8
 Content-Type: application/json
 
 {  
-  "userId": "67f01b1b8f3558d611068cd9",
-  "productId": "67f017bbb626bbf9f015fafd",
-  "description": "xxxx xxxx xxxx xxxx xxxx '",
-  "image": "https://example.com/any.jpg",
-  "price": 1999.99,
-  "status": "shipped"
+  "username": "sorayaskavinski",
+  "email": "sorayaskavinski@github.com",
+  "password": "22255555"
 }
 
 ###delete product
 DELETE http://localhost:5002/api/auth/67f01b4e8f3558d611068cdd
 
 ###post a product
-POST http://localhost:5002/login
+POST http://localhost:5002/user
 Content-Type: application/json
 
 {
-  "username": "admin",
-  "password": "123456"
+  "username": "sorayaskavinski111",
+  "email": "sorayaskavinski111@github.com",
+  "password": "22222222"
 }
