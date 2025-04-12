@@ -38,7 +38,11 @@ routes.get("/", isAuth, (req, res) => {
 routes.get("/dashboard", isAuth, (req, res) => {
   res.sendFile("/views/dashboard.html", { root: __dirname });
 });
+
 routes.get("/login", (req, res) => {
+  if (req.user) {
+    return res.redirect("/dashboard");
+  }
   res.sendFile("/views/login.html", { root: __dirname });
 });
 
