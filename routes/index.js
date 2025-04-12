@@ -18,7 +18,13 @@ routes.get(
   "/auth/github/callback",
   passport.authenticate("github", { failureRedirect: "/login" }),
   function (req, res) {
-    
+    req.session.user = req.user;
+    req.session.save((err) => {
+      if (err) {
+        console.error("Session save error:", err);
+        return res.status(500).send("Internal Server Error");
+      }
+    });
     res.redirect("/dashboard");
   }
 );
@@ -35,7 +41,7 @@ routes.get("/dashboard", isAuthenticated, (req, res) => {
 // end of protected routes
 
 routes.get("/login", (req, res) => {
-  if(req.user !== undefined) {
+  if (req.user !== undefined) {
     return res.redirect("/dashboard");
   }
   res.sendFile(__dirname + "/views/login.html");
