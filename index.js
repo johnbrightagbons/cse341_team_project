@@ -11,6 +11,8 @@ import session from "express-session";
 import bodyParser from "body-parser";
 import createError from "http-errors";
 import swaggerUi from "swagger-ui-express";
+import MongoStore from "connect-mongo";
+
 
 import { connectDB } from "./config/db.js";
 import passport from "./config/passport.js";
@@ -37,12 +39,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Session config
+// Session config (with Mongodb Store)
 app.use(session({
-  secret: "secret",
+  secret: process.env.SESSION_SECRET || "default_secret",
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_URI,
+    collectionName: 'sessions',
+  }),
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 // 1 day
+  }
 }));
+
 
 // Passport
 app.use(passport.initialize());
@@ -125,11 +135,9 @@ app.use((err, req, res, next) => {
 const startServer = async () => {
   try {
     await connectDB();
-    if (process.env.NODE_ENV !== 'production') {
-      app.listen(PORT, () => {
-        console.log(`Server is running on port ${PORT}`);
-      });
-    }
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
   } catch (error) {
     console.error("Database connection failed:", error.message);
     process.exit(1);
