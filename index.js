@@ -2,8 +2,6 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-console.log("GITHUB_CLIENT_ID:", process.env.GITHUB_CLIENT_ID);
-
 import express from "express";
 import fs from "fs";
 import path from "path";
