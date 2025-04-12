@@ -10,16 +10,6 @@ const passport = require("passport");
 const session = require("express-session");
 const GitHubStrategy = require("passport-github").Strategy
 
-// store a session here
-app.use(
-  session({
-    secret: "cse341-team-project",
-    resave: false,
-    saveUninitialized: false,
-    cookie: { httpOnly: true, secure: true, maxAge: 60 * 60 * 1000 },
-  })
-);
-
 //session middleware
 app.use(passport.initialize());
 app.use(passport.session());
