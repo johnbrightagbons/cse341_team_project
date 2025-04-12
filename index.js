@@ -13,7 +13,7 @@ const GithubStrategy = require("passport-github2").Strategy;
 // store a session here
 app.use(
   session({
-    secret: "@github",
+    secret: "cse341-team-project",
     resave: false,
     saveUninitialized: false,
     cookie: { httpOnly: true, secure: true, maxAge: 60 * 60 * 1000 },
