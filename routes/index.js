@@ -45,11 +45,11 @@ routes.get("/dashboard", isAuth, (req, res) => {
 
 routes.get("/login", (req, res) => {
   if (req.user) {
-    res.json(req.user);
+    return res.json(req.user);
   }
   //   return res.redirect("/dashboard");
   // }
-  // res.sendFile(__dirname + "/views/login.html");
+  res.sendFile(__dirname + "/views/login.html");
   // res.json(req.user);
 });
 
