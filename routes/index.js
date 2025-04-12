@@ -26,9 +26,9 @@ routes.get(
     res.redirect("/");
   }
 );
-routes.get("/auth/logout", (req, res) => {
+routes.get("/logout", (req, res) => {
   req.logout();
-  res.redirect("/auth/github");
+  res.redirect("/");
 });
 
 routes.get("/", isAuth, (req, res) => {
@@ -36,14 +36,15 @@ routes.get("/", isAuth, (req, res) => {
 });
 
 routes.get("/dashboard", isAuth, (req, res) => {
-  res.sendFile("/views/dashboard.html", { root: __dirname });
+  res.sendFile(__dirname + "/views/dashboard.html");
 });
 
 routes.get("/login", (req, res) => {
-  if (req.user) {
-    return res.redirect("/dashboard");
-  }
-  res.sendFile("/views/login.html", { root: __dirname });
+  // if (req.user) {
+  //   return res.redirect("/dashboard");
+  // }
+  // res.sendFile(__dirname + "/views/login.html");
+  res.json(req.user);
 });
 
 // CREATE
