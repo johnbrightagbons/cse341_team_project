@@ -22,9 +22,10 @@ app.use(
 
 //session middleware
 app.use(passport.initialize());
+app.use(passport.session());
 
 passport.serializeUser(function (user, done) {
-  done(null, user)
+  done(null, user);
 });
 passport.deserializeUser(function (id, done) {
   done(null, user);

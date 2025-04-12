@@ -5,49 +5,17 @@ const OrderController = require("../controllers/orderController");
 const PaymentController = require("../controllers/paymentController");
 const ProductController = require("../controllers/productController");
 
-// Auth Middleware this will impliment protection on the route
-const isAuth = (req, res, next) => {
-  if (req.user) {
-    next();
-  } else {
-    res.redirect("/login");
-  }
-};
-
 // AUTHENTICATION
-routes.get(
-  "/auth/github",
-  passport.authenticate("github", { scope: ["profile"] })
-);
-routes.get(
-  "/auth/github/callback",
-  passport.authenticate("github", { failureRedirect: "/login" }),
-  function (req, res) {
-    // start a session and save the user profile to the session
-    req.session.user = req.user;
-    console.log("User logged in successfully");
-    res.redirect("/dashboard");
-  }
-);
-routes.get("/logout", (req, res) => {
-  req.logout((err) => {
-    if (err) return next(err);
-    // Clear the session data
-    req.session = null; // Clear the session data
-    console.log("User logged out successfully");
-  });
-  res.redirect("/login");
-});
 
-routes.get("/", (req, res) => {
-  res.redirect("/dashboard");
-});
+routes.get("/logout", (req, res) => {
+  //user logout from passport github
+
+})
 
 routes.get("/dashboard", (req, res) => {
-  if (req.user == undefined) {
+  if (!req.user) {
     return res.redirect("/login");
   }
-
   res.sendFile(__dirname + "/views/dashboard.html");
 });
 
