@@ -36,10 +36,10 @@ routes.get("/dashboard", isAuthenticated, (req, res) => {
 // end of protected routes
 
 routes.get("/login", (req, res) => {
-  if (req.user) {
-    return res.redirect("/dashboard");
+  if (!req.user) {
+    return res.sendFile(__dirname + "/views/login.html");
   }
-  res.sendFile(__dirname + "/views/login.html");
+  res.redirect("/dashboard");
 });
 
 routes.get("/logout", (req, res) => {
