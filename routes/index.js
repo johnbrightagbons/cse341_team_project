@@ -36,7 +36,7 @@ routes.get("/dashboard", isAuthenticated, (req, res) => {
 // end of protected routes
 
 routes.get("/login", notAuthenticated, (req, res) => {
-  res.redirect("/dashboard");
+  res.sendFile(__dirname + "/views/login.html");
 });
 
 routes.get("/logout", (req, res) => {
