@@ -7,11 +7,10 @@ const ProductController = require("../controllers/productController");
 
 // Auth Middleware this will impliment protection on the route
 const isAuth = (req, res, next) => {
-  if (req.user) {
-    next();
-  } else {
-    res.redirect("/login");
+  if (req.isAuthenticated()) {
+    return next();
   }
+  res.redirect("/login");
 };
 
 // AUTHENTICATION
