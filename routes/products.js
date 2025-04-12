@@ -7,8 +7,8 @@ const  router = express.Router();
 
 router.get("/", getAll);
 router.get("/:id", getSingle);
-router.post("/", isAuthenticated, validateProduct, createProduct, upload.single("image"));
-router.put("/:id", isAuthenticated,  validateProduct, updateProduct);
+router.post("/", isAuthenticated, upload.single("image"), validateProduct, createProduct);
+router.put("/:id", isAuthenticated, upload.single("image"), validateProduct, updateProduct);
 router.delete("/:id", isAuthenticated,  deleteProduct);
 
 export default router;

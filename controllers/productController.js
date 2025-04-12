@@ -62,32 +62,40 @@ const createProduct = async (req, res, next) => {
 };
 
 
-const updateProduct = async(req, res, next) => {
-    try{
-        //#swagger.tags=['Product']
-        const { id } = req.params;
-
-        if(!mongoose.Types.ObjectId.isValid(id)){
-            return next(createError(400, "Invalid product ID"));
-        }
-
-        const updatedProduct = await Product.findByIdAndUpdate(id, req.body, {
-            new: true,
-            runValidators: true,
-        });
-        
-
-        if (!updatedProduct){
-            return next(createError(404, "Product not found"));
-        }
-        res.status(200).json(updatedProduct);
-    } catch (error){
-        if (error.isJoi){
-            return next(createError(400, error.details[0].message));
-        }
-        next(createError(500, "Something went wrong  while updating the product."));
+const updateProduct = async (req, res, next) => {
+    try {
+      //#swagger.tags=['Product']
+      const { id } = req.params;
+  
+      if (!mongoose.Types.ObjectId.isValid(id)) {
+        return next(createError(400, "Invalid product ID"));
+      }
+  
+      const updateData = { ...req.body };
+  
+      // check immage file
+      if (req.file) {
+        updateData.image = req.file.path;
+      }
+  
+      const updatedProduct = await Product.findByIdAndUpdate(id, updateData, {
+        new: true,
+        runValidators: true,
+      });
+  
+      if (!updatedProduct) {
+        return next(createError(404, "Product not found"));
+      }
+  
+      res.status(200).json(updatedProduct);
+    } catch (error) {
+      if (error.isJoi) {
+        return next(createError(400, error.details[0].message));
+      }
+      next(createError(500, "Something went wrong while updating the product."));
     }
-};
+  };
+  
 
 const deleteProduct = async(req, res, next) => {
     try{

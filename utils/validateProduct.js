@@ -1,6 +1,7 @@
 import Joi from "joi";
 import createError from "http-errors";
 
+
 const productSchema = Joi.object({
     name: Joi.string().min(3).max(100).required()
         .messages({ "any.required": "Product name is required." }),
