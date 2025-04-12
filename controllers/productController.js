@@ -1,6 +1,5 @@
 import { Product } from "../models/product.model.js";
 import createError from "http-errors";
-import { validateProduct } from "../utils/validateProduct.js";
 import mongoose from "mongoose";
 
 const getAll = async(req,res, next) => {
