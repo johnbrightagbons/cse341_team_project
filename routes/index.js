@@ -6,7 +6,7 @@ const OrderController = require("../controllers/orderController");
 const PaymentController = require("../controllers/paymentController");
 const ProductController = require("../controllers/productController");
 const app = express();
-const { isAuthenticated } = require("../middleware/authenticate");
+const { isAuthenticated, notAuthenticated } = require("../middleware/auth");
 
 // login
 routes.get(
@@ -35,7 +35,7 @@ routes.get("/dashboard", isAuthenticated, (req, res) => {
 
 // end of protected routes
 
-routes.get("/login",!isAuthenticated, (req, res) => {
+routes.get("/login", notAuthenticated, (req, res) => {
   res.redirect("/dashboard");
 });
 
