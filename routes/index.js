@@ -39,7 +39,7 @@ routes.get("/logout", (req, res) => {
   res.redirect("/login");
 });
 
-routes.get("/", isAuth, (req, res) => {
+routes.get("/", (req, res) => {
   res.redirect("/dashboard");
 });
 
