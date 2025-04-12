@@ -43,10 +43,9 @@ routes.get("/", isAuth, (req, res) => {
 });
 
 routes.get("/dashboard", (req, res) => {
-  if (!req.user) {
+  if (req.user == undefined) {
     return res.redirect("/login");
   }
-  // check if the user is authenticated and has a session
 
   res.sendFile(__dirname + "/views/dashboard.html");
 });
