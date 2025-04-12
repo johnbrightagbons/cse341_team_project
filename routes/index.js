@@ -38,7 +38,8 @@ routes.use("/payment", paymentRouter);
 
 // Default
 routes.get("/", (req, res) => {
-  res.send({ documentationURL: "http://localhost:5002/api-docs" });
+  const baseUrl = req.protocol + '://' + req.get('host');
+  res.send({ documentationURL: `${baseUrl}/api-docs` });
 });
 
 export default routes;
