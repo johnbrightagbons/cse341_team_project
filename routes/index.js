@@ -27,8 +27,12 @@ routes.get(
   }
 );
 routes.get("/logout", (req, res) => {
-  req.logout();
-  res.redirect("/");
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/login");
+  });
 });
 
 routes.get("/", isAuth, (req, res) => {
