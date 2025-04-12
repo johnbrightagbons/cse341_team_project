@@ -1,16 +1,27 @@
-const routes = require("express").Router();
 const passport = require("passport");
+const routes = require("express").Router();
 const UserController = require("../controllers/userController");
 const OrderController = require("../controllers/orderController");
 const PaymentController = require("../controllers/paymentController");
 const ProductController = require("../controllers/productController");
-const express = require("express");
+
+// Auth Middleware this will impliment protection on the route
+const isAuth = (req, res, next) => {
+  if (req.user) {
+    next();
+  } else {
+    res.redirect("/login");
+  }
+};
 
 // AUTHENTICATION
-routes.get("/auth/github", passport.authenticate("github", { scope: ['profile'] }));
+routes.get(
+  "/auth/github",
+  passport.authenticate("github", { scope: ["profile"] })
+);
 routes.get(
   "/auth/github/callback",
-  passport.authenticate("github", { failureRedirect: "/" }),
+  passport.authenticate("github", { failureRedirect: "/login" }),
   function (req, res) {
     res.redirect("/");
   }
@@ -19,31 +30,16 @@ routes.get("/auth/logout", (req, res) => {
   req.logout();
   res.redirect("/auth/github");
 });
-routes.get("/auth/user", (req, res) => {
-  if (req.isAuthenticated()) {
-    res.json({ user: req.user });
-  } else {
-    res.status(401).json({ message: "Unauthorized" });
-  }
-});
-routes.get("/", (req, res) => {
-  // Check if user is authenticated
-  if (req.isAuthenticated()) {
-    // User is authenticated, redirect to dashboard
-    return res.redirect("/dashboard");
-  }
-  // User is not authenticated, redirect to login page
-  res.sendFile("/views/login.html", { root: __dirname });
+
+routes.get("/", isAuth, (req, res) => {
+  res.redirect("/dashboard");
 });
 
-//check if user is authenticated
-routes.get('/dashboard', (req, res) => {
-  if (req.isAuthenticated()) {
-    res.sendFile("/views/dashboard.html", { root: __dirname });
-  }
-  else {
-    res.redirect("/");
-  }
+routes.get("/dashboard", isAuth, (req, res) => {
+  res.sendFile("/views/dashboard.html", { root: __dirname });
+});
+routes.get("/login", (req, res) => {
+  res.sendFile("/views/login.html", { root: __dirname });
 });
 
 // CREATE
