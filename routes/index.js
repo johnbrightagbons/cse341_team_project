@@ -6,7 +6,7 @@ const OrderController = require("../controllers/orderController");
 const PaymentController = require("../controllers/paymentController");
 const ProductController = require("../controllers/productController");
 const app = express();
-const { isAuthenticated, notAuthenticated } = require("../middleware/auth");
+const { isAuthenticated } = require("../middleware/auth");
 
 // login
 routes.get(
@@ -29,12 +29,15 @@ routes.get("/", isAuthenticated, (req, res) => {
 });
 
 routes.get("/dashboard", isAuthenticated, (req, res) => {
-  res.sendFile(__dirname + "/views/dashboard.html");
+  return res.sendFile(__dirname + "/views/dashboard.html");
 });
 
 // end of protected routes
 
-routes.get("/login", notAuthenticated, (req, res) => {
+routes.get("/login", (req, res) => {
+  if(req.user !== undefined) {
+    return res.redirect("/dashboard");
+  }
   res.sendFile(__dirname + "/views/login.html");
 });
 

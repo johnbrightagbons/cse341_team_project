@@ -1,14 +1,8 @@
 const isAuthenticated = (req, res, next) => {
   if (req.user === undefined) {
-    return res.sendFile(__dirname + "/views/login.html");
-  }
-  next();
-};
-const notAuthenticated = (req, res, next) => {
-  if (req.user === undefined) {
-    return res.sendFile(__dirname+ "/views/dashboard.html");
+    return res.redirect("/login");
   }
   next();
 };
 
-module.exports = { isAuthenticated, notAuthenticated };
+module.exports = { isAuthenticated };
