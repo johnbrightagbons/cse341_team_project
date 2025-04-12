@@ -11,11 +11,11 @@ const session = require("express-session");
 const GitHubStrategy = require("passport-github").Strategy;
 
 app.use(
-  session.Cookie({
-    maxAge: 24 * 60 * 60 * 1000, // 24 hours
-    httpOnly: true,
-    secure: true, // Set to true if using HTTPS
-    sameSite: "strict", // CSRF protection
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true },
   })
 );
 
