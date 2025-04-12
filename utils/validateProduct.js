@@ -12,7 +12,7 @@ const productSchema = Joi.object({
     image: Joi.string().uri().optional()
 });
 
-export const validateProduct = async (req, res, next) => {
+const validateProduct = async (req, res, next) => {
     try {
         await  productSchema.validateAsync(req.body);
         next();  
@@ -20,3 +20,5 @@ export const validateProduct = async (req, res, next) => {
         next(createError(400, error.details[0].message));  
     }
 }
+
+export {validateProduct};

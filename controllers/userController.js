@@ -32,20 +32,7 @@ const getSingle = async(req, res, next) => {
     }
 };
 
-const createUser = async(req,res, next)=>{
-    try {
-        console.log("BODY RECEBIDO:", req.body); // 👈 Adiciona isso
-        const newUser = new User(req.body);
-        await newUser.save();
-        res.status(201).json(newUser);
-    } catch (error) {
-        console.error("Erro ao criar usuário:", error); // 👈 Ajuda no debug
-        next(createError(400, error.message || "Invalid user data"));
-    }
-};
-
-
-/*const  createUser = async(req,res, next)=>{
+const  createUser = async(req,res, next)=>{
     try {
         //#swagger.tags=['User']
         const newUser = new User(req.body);
@@ -55,7 +42,7 @@ const createUser = async(req,res, next)=>{
     } catch (error) {
         next(createError(400, error.message || "Invalid user data"));
     }
-};*/
+};
 
 const updateUser = async(req, res, next) => {
     try{
