@@ -1,10 +1,10 @@
 const isAuthenticated = (req, res, next) => {
-    if (req.session.user === undefined) {        
-        return res.status(401).json("Unauthorized access. Loggin for access.");
-    }
-    next();
+  if (req.user === undefined) {
+    return res.redirect("/login");
+  }
+  next();
 };
 
-module.exports = { 
-    isAuthenticated
-}
+module.exports = {
+  isAuthenticated,
+};

@@ -8,7 +8,7 @@ const specs = swaggerDoc(options);
 const app = express();
 const passport = require("passport");
 const session = require("express-session");
-const GithubStrategy = require("passport-github2").Strategy;
+const GitHubStrategy = require("passport-github").Strategy
 
 // store a session here
 app.use(
@@ -24,27 +24,25 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+passport.use( new GitHubStrategy(
+  {
+    clientID: process.env.GITHUB_CLIENT_ID,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    callbackURL: "https://cse341-team-project-jmne.onrender.com/auth/github/callback",
+  },
+  function (accessToken, refreshToken, user, done) {
+    return done(null, user);
+  }
+));
+
 passport.serializeUser(function (user, done) {
   done(null, user);
 });
-passport.deserializeUser(function (id, done) {
+passport.deserializeUser(function (user, done) {
   done(null, user);
 });
 
-passport.use(
-  new GithubStrategy(
-    {
-      clientID: process.env.GITHUB_CLIENT_ID,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      callbackURL:
-        "https://cse341-team-project-jmne.onrender.com/auth/github/callback",
-    },
-    function (accessToken, refreshToken, user, done) {
-      // Save the user profile to the session or database
-      return done(null, user);
-    }
-  )
-);
 
 app.use(express.json());
 app.use("/api-docs/", swaggerUi.serve, swaggerUi.setup(specs));
