@@ -76,7 +76,6 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
-app.use(cors());
 
 // Serialize user data into session
 passport.serializeUser((user, done) => {

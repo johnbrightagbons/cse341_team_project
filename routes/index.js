@@ -13,6 +13,9 @@ const routes = express.Router();
 // Manual login
 //routes.use("/auth", loginRoutes);
 
+// Swagger
+routes.use("/swagger", swagger);
+
 // GitHub OAuth login
 routes.get("/login", passport.authenticate("github"));
 routes.get("/github/callback", passport.authenticate("github", {
@@ -27,8 +30,6 @@ routes.get("/logout", (req, res, next) => {
   });
 });
 
-// Swagger
-routes.use("/swagger", swagger);
 
 // Protected routes
 routes.use("/user", userRouter);
