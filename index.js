@@ -12,7 +12,6 @@ import swaggerUi from "swagger-ui-express";
 
 import { connectDB } from "./config/db.js";
 import passport from "./config/passport.js";
-import logSession from './middleware/logSession.js';
 
 import userRouter from "./routes/user.js";
 import productRouter from "./routes/products.js";
@@ -54,8 +53,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Log session
-app.use(logSession);
 
 // --- Routes ---
 app.use("/", routes);
