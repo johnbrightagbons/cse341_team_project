@@ -3,7 +3,7 @@ import request from 'supertest';
 import app from '../index.js';
 
 describe('Order Routes', () => {
-  let createdOrderId = '';
+  let createdPaymentId = '';
   let db;
   let connection;
 
@@ -18,22 +18,23 @@ describe('Order Routes', () => {
     await mongoose.connection.close();
   });
 
-  it('should GET all orders', async () => {
-    const res = await request(app).get('/order');
+  
+  it('should GET all payment', async () => {
+    const res = await request(app).get('/payment');
     expect(res.statusCode).toBe(200);
     expect(Array.isArray(res.body)).toBe(true);
   }, 10000);
 
-  it('should CREATE a new order', async () => {
+  it('should CREATE a new payment', async () => {
     const res = await request(app)
-      .post('/order')
+      .post('/payment')
       .send({
-        userId: '67ef1ea4b192f25d1cd2b90b',
-        productId: '67f04d374c27f96e0e47151d',
-        description: 'xxxx xxxx xxx',
-        image: 'https://test.com/product.jpg',
-        price: 123.99,
-        status: 'completed',
+        orderId: "67f01f0f8f3558d611068ceb",
+        userId: "67ef1ea4b192f25d1cd2b90b",
+        amount: 999.99,
+        paymentMethod: "credit_card",
+        transactionId: "1234MNS",
+        status: "completed"
       });
 
     expect(res.statusCode).toBe(201);
@@ -41,9 +42,9 @@ describe('Order Routes', () => {
     createdOrderId = res.body._id;
   }, 10000);
 
-  it('should GET the created order by ID', async () => {
-    const res = await request(app).get(`/order/${createdOrderId}`);
+  it('should GET the created payment by ID', async () => {
+    const res = await request(app).get(`/payment/${createdPaymentId}`);
     expect(res.statusCode).toBe(200);
-    expect(res.body._id).toBe(createdOrderId);
+    expect(res.body._id).toBe(createdPaymentId);
   }, 10000);
 });
