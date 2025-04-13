@@ -41,8 +41,8 @@ passport.use(
       callbackURL:
         "https://cse341-team-project-jmne.onrender.com/auth/github/callback",
     },
-    function (accessToken, refreshToken, profile, done) {
-      return done(null, profile);
+    function (accessToken, refreshToken, profile, cb) {
+      return cb(null, profile);
     }
   )
 );
