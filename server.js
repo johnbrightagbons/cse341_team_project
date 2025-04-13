@@ -14,14 +14,24 @@ app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true },
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      secure: false,
+      maxAge: 60 * 60 * 1000,
+    },
   })
 );
 
-//session middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+passport.serializeUser(function (user, cb) {
+  cb(null, user.id);
+});
+passport.deserializeUser(function (id, cb) {
+  done(null, id);
+});
 
 passport.use(
   new GitHubStrategy(
@@ -31,18 +41,11 @@ passport.use(
       callbackURL:
         "https://cse341-team-project-jmne.onrender.com/auth/github/callback",
     },
-    function (accessToken, refreshToken, user, done) {
-      return done(null, user);
+    function (accessToken, refreshToken, profile, done) {
+      return done(null, profile);
     }
   )
 );
-
-passport.serializeUser(function (user, done) {
-  done(null, user);
-});
-passport.deserializeUser(function (user, done) {
-  done(null, user);
-});
 
 app.use(express.json());
 app.use("/api-docs/", swaggerUi.serve, swaggerUi.setup(specs));

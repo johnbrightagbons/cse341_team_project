@@ -6,13 +6,17 @@ const OrderController = require("../controllers/orderController");
 const PaymentController = require("../controllers/paymentController");
 const ProductController = require("../controllers/productController");
 const app = express();
-const isAuthenticated = require("../middleware/auth");
+const isAuth = require("../middleware/auth").isAuth;
 
 // login
-routes.get(
-  "/login",
-  passport.authenticate("github", { scope: ["user:email"] })
-);
+routes.get("/login", passport.authenticate("github"));
+
+//logout
+routes.get("/logout", (req, res) => {
+  req.logOut(() => {
+    res.redirect("/login");
+  });
+});
 
 routes.get(
   "/auth/github/callback",
@@ -23,21 +27,14 @@ routes.get(
 );
 
 // protected routes
-routes.get("/", isAuthenticated, (req, res) => {
+routes.get("/", isAuth, (req, res) => {
   res.redirect("/dashboard");
 });
 
-routes.get("/dashboard", isAuthenticated, (req, res) => {
+routes.get("/dashboard", isAuth, (req, res) => {
   return res.sendFile(__dirname + "/views/dashboard.html");
 });
-
 // end of protected routes
-
-routes.get("/logout", (req, res) => {
-  req.logOut(() => {
-    res.redirect("/login");
-  });
-});
 
 // CREATE
 routes.post("/users", UserController.create);
