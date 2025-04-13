@@ -14,7 +14,7 @@ routes.get("/login", passport.authenticate("github"));
 //logout
 routes.get("/logout", (req, res) => {
   req.logOut(() => {
-    res.redirect("/login");
+    res.redirect("/");
   });
 });
 
