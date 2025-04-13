@@ -9,12 +9,16 @@ const app = express();
 const isAuth = require("../middleware/auth").isAuth;
 
 // login
-routes.get("/login", passport.authenticate("github"));
+routes.get("/login", (req, res) => {
+  res.sendFile(__dirname + "/views/login.html");
+});
+
+routes.get("/auth/github", passport.authenticate("github"));
 
 //logout
 routes.get("/logout", (req, res) => {
   req.logOut(() => {
-    res.redirect("/");
+    res.redirect("/login");
   });
 });
 
