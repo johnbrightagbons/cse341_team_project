@@ -10,6 +10,10 @@ const isAuth = require("../middleware/auth").isAuth;
 
 // login
 routes.get("/login", (req, res) => {
+  if (req.isAuthenticated()) {
+    return res.redirect("/dashboard");
+  }
+  // User is not authenticated
   res.sendFile(__dirname + "/views/login.html");
 });
 
