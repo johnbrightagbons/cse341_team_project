@@ -55,36 +55,83 @@ const validateOrder = [
     .withMessage("Price is required and valid Numeric"),
   body("status").notEmpty().withMessage("Status is required"),
 ];
-const validateUserUpdate = [
-  body("fullname").withMessage("Fullname not Valid"),
-  body("email").isEmail().withMessage("Password not Valid"),
+const validateUpdate = [
+  body("fullname").optional().notEmpty().withMessage("Fullname is required"),
+  body("email")
+    .optional()
+    .notEmpty()
+    .isEmail()
+    .withMessage("Password is required"),
   body("password")
+    .optional()
+    .notEmpty()
     .isLength({ min: 8 })
     .withMessage("Password required with at least 8 characters"),
-  body("role").withMessage("Role not valid"),
-];
-const validateProductUpdate = [
-  body("name").withMessage("Product name not Valid"),
-  body("description").withMessage("Description not Valid"),
-  body("image").isURL().withMessage("Image Url not Valid"),
+  body("role").optional().notEmpty().withMessage("Role is required"),
+
+  body("name").optional().notEmpty().withMessage("Product name is required"),
+  body("description")
+    .optional()
+    .notEmpty()
+    .withMessage("Description is required"),
+  body("image")
+    .optional()
+    .notEmpty()
+    .isURL()
+    .withMessage("Image Url is required"),
   body("price")
+    .optional()
+    .notEmpty()
     .isFloat({ min: 0 })
-    .withMessage("Price not Valid and valid Numeric"),
-];
-const validatePaymentUpdate = [
-  body("orderId").isMongoId().withMessage("Order Id not Valid"),
-  body("transactionId").isMongoId().withMessage("Transaction Id not Valid"),
-  body("userId").isMongoId().withMessage("User Id not Valid"),
-  body("amount").isFloat({ min: 0 }).withMessage("Amount not Valid"),
-  body("status").withMessage("Status not Valid"),
-];
-const validateOrderUpdate = [
-  body("userId").isMongoId().withMessage("User Id not Valid"),
-  body("productId").isMongoId().withMessage("Product Id not Valid"),
-  body("description").withMessage("Description not Valid"),
-  body("image").isURL().withMessage("Image Url not Valid"),
-  body("price").isFloat({ min: 0 }).withMessage("Price not Valid"),
-  body("status").withMessage("Status not Valid"),
+    .withMessage("Price is required and valid Numeric"),
+
+  body("orderId")
+    .optional()
+    .notEmpty()
+    .isMongoId()
+    .withMessage("Order Id is required"),
+  body("transactionId")
+    .isMongoId()
+    .optional()
+    .notEmpty()
+    .withMessage("Transaction Id is required"),
+  body("userId")
+    .optional()
+    .notEmpty()
+    .isMongoId()
+    .withMessage("User Id is required"),
+  body("amount")
+    .optional()
+    .notEmpty()
+    .isFloat({ min: 0 })
+    .withMessage("Amount is required and valid Numeric"),
+  body("status").optional().notEmpty().withMessage("Status is required"),
+
+  body("userId")
+    .optional()
+    .notEmpty()
+    .isMongoId()
+    .withMessage("User Id is required"),
+  body("productId")
+    .optional()
+    .notEmpty()
+    .isMongoId()
+    .withMessage("Product Id is required"),
+  body("description")
+    .optional()
+    .notEmpty()
+    .withMessage("Description is required"),
+  body("image")
+    .optional()
+    .notEmpty()
+    .isURL()
+    .withMessage("Image Url is required"),
+  body("price")
+    .optional()
+    .notEmpty()
+    .isFloat({ min: 0 })
+    .withMessage("Price is required and valid Numeric"),
+  body("status").optional().notEmpty().withMessage("Status is required"),
 ];
 
 module.exports = {
@@ -93,8 +140,5 @@ module.exports = {
   validateProduct,
   validatePayment,
   validateOrder,
-  validateUserUpdate,
-  validateProductUpdate,
-  validatePaymentUpdate,
-  validateOrderUpdate,
+  validateUpdate,
 };

@@ -4,19 +4,14 @@ const {
   validateProduct,
   validatePayment,
   validateOrder,
-  validateUserUpdate,
-  validateOrderUpdate,
-  validatePaymentUpdate,
-  validateProductUpdate,
+  validateUpdate,
 } = require("../middleware/auth");
-const { body, validationResult } = require("express-validator");
 const routes = require("express").Router();
 const express = require("express");
 const UserController = require("../controllers/userController");
 const OrderController = require("../controllers/orderController");
 const PaymentController = require("../controllers/paymentController");
 const ProductController = require("../controllers/productController");
-const app = express();
 const isAuth = require("../middleware/auth").isAuth;
 
 // login
@@ -68,21 +63,21 @@ routes.get("/payments", PaymentController.index);
 routes.get("/products", ProductController.index);
 
 // READ ONE
-routes.get("/users/{:id}", UserController.show);
-routes.get("/orders/{:id}", OrderController.show);
-routes.get("/payments/{:id}", PaymentController.show);
-routes.get("/products/{:id}", ProductController.show);
+routes.get("/users/:id", UserController.show);
+routes.get("/orders/:id", OrderController.show);
+routes.get("/payments/:id", PaymentController.show);
+routes.get("/products/:id", ProductController.show);
 
 // UPDATE
-routes.put("/users/{:id}", validateUserUpdate, UserController.update);
-routes.put("/orders/{:id}", validateOrderUpdate, OrderController.update);
-routes.put("/payments/{:id}", validatePaymentUpdate, PaymentController.update);
-routes.put("/products/{:id}", validateProductUpdate, ProductController.update);
+routes.put("/users/:id", validateUpdate, UserController.update);
+routes.put("/orders/:id", validateUpdate, OrderController.update);
+routes.put("/payments/:id", validateUpdate, PaymentController.update);
+routes.put("/products/:id", validateUpdate, ProductController.update);
 
 // DELETE
-routes.delete("/users/{:id}", UserController.destroy);
-routes.delete("/orders/{:id}", OrderController.destroy);
-routes.delete("/payments/{:id}", PaymentController.destroy);
-routes.delete("/products/{:id}", ProductController.destroy);
+routes.delete("/users/:id", UserController.destroy);
+routes.delete("/orders/:id", OrderController.destroy);
+routes.delete("/payments/:id", PaymentController.destroy);
+routes.delete("/products/:id", ProductController.destroy);
 
 module.exports = routes;
