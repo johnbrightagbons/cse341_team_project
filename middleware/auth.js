@@ -23,8 +23,9 @@ const validateProduct = [
   body("image").notEmpty().isURL().withMessage("Image Url is required"),
   body("price")
     .notEmpty()
+    .withMessage("Price is required")
     .isFloat({ min: 0 })
-    .withMessage("Price is required and valid Numeric"),
+    .withMessage("Price can not be zero or less"),
 ];
 const validatePayment = [
   body("orderId").notEmpty().isMongoId().withMessage("Order Id is required"),
@@ -34,9 +35,9 @@ const validatePayment = [
     .withMessage("Transaction Id is required"),
   body("userId").notEmpty().isMongoId().withMessage("User Id is required"),
   body("amount")
-    .notEmpty()
+    .notEmpty().withMessage("Amount is Required")
     .isFloat({ min: 0 })
-    .withMessage("Amount is required and valid Numeric"),
+    .withMessage("Amount can not be zero or less"),
   body("status").notEmpty().withMessage("Status is required"),
 ];
 const validateOrder = [
@@ -46,13 +47,11 @@ const validateOrder = [
     .isMongoId()
     .withMessage("Product Id is required"),
   body("description").notEmpty().withMessage("Description is required"),
-  body("image").notEmpty().isURL().withMessage("Image Url is required"),
+  body("image").notEmpty().withMessage("Image Url is required").isURL().withMessage("Image Url is not valid"),
   body("price")
-    //min value 0 no negative prices
-
-    .notEmpty()
+    .notEmpty().withMessage("Price is required")
     .isFloat({ min: 0 })
-    .withMessage("Price is required and valid Numeric"),
+    .withMessage("Price can not be zero or less"),
   body("status").notEmpty().withMessage("Status is required"),
 ];
 const validateUpdate = [
@@ -61,77 +60,77 @@ const validateUpdate = [
     .optional()
     .notEmpty()
     .isEmail()
-    .withMessage("Password is required"),
+    .withMessage("Email not valid"),
   body("password")
     .optional()
     .notEmpty()
     .isLength({ min: 8 })
     .withMessage("Password required with at least 8 characters"),
-  body("role").optional().notEmpty().withMessage("Role is required"),
+  body("role").optional().notEmpty().withMessage("Role should be admin or client"),
 
-  body("name").optional().notEmpty().withMessage("Product name is required"),
+  body("name").optional().notEmpty().withMessage("Product name not valid"),
   body("description")
     .optional()
     .notEmpty()
-    .withMessage("Description is required"),
+    .withMessage("Description not valid"),
   body("image")
     .optional()
     .notEmpty()
     .isURL()
-    .withMessage("Image Url is required"),
+    .withMessage("Image Url is not valid"),
   body("price")
     .optional()
     .notEmpty()
     .isFloat({ min: 0 })
-    .withMessage("Price is required and valid Numeric"),
+    .withMessage("Price can not be zero or less"),
 
   body("orderId")
     .optional()
     .notEmpty()
     .isMongoId()
-    .withMessage("Order Id is required"),
+    .withMessage("Order Id is not valid"),
   body("transactionId")
     .isMongoId()
     .optional()
     .notEmpty()
-    .withMessage("Transaction Id is required"),
+    .withMessage("Transaction Id is not valid"),
   body("userId")
     .optional()
     .notEmpty()
     .isMongoId()
-    .withMessage("User Id is required"),
+    .withMessage("User Id is not valid"),
   body("amount")
     .optional()
     .notEmpty()
     .isFloat({ min: 0 })
-    .withMessage("Amount is required and valid Numeric"),
-  body("status").optional().notEmpty().withMessage("Status is required"),
+    .withMessage("Amount can not be zero or less"),
+  body("status").optional().notEmpty().withMessage("Status is not valid"),
 
   body("userId")
     .optional()
     .notEmpty()
     .isMongoId()
-    .withMessage("User Id is required"),
+    .withMessage("User Id is not valid"),
   body("productId")
     .optional()
     .notEmpty()
     .isMongoId()
-    .withMessage("Product Id is required"),
+    .withMessage("Product Id is not valid"),
   body("description")
     .optional()
     .notEmpty()
-    .withMessage("Description is required"),
+    .withMessage("Description is not valid"),
   body("image")
     .optional()
     .notEmpty()
     .isURL()
-    .withMessage("Image Url is required"),
+    .withMessage("Image Url is not valid"),
   body("price")
     .optional()
     .notEmpty()
     .isFloat({ min: 0 })
-    .withMessage("Price is required and valid Numeric"),
-  body("status").optional().notEmpty().withMessage("Status is required"),
+    .withMessage("Price cannot be zero or less"),
+  body("status").optional().notEmpty().withMessage("Status is not valid"),
 ];
 
 module.exports = {
