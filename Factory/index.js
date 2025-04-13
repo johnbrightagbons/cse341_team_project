@@ -4,7 +4,7 @@ require("dotenv").config();
 // Initialize connection I could not use the class constructor because of the async function required for smooth
 async function connect() {
   try {
-    const client = await MongoClient.connect(process.env.MONGODB_URI);
+    const client = await MongoClient.connect(process.env.MONGODB_URI_SEEDER);
     console.log("Connected to MongoDB");
     return client.db("ecommerce");
   } catch (error) {
@@ -13,15 +13,10 @@ async function connect() {
   }
 }
 
-// CREATE Multiple Education posts
+// CREATE Multiple posts
 async function createMany(insertDataArray, collectionName) {
   const collection = (await connect()).collection(collectionName);
   const result = await collection.insertMany(insertDataArray);
-
-  // Close the connection
-  const db = await connect();
-  await db.client.close();
-  console.log("Database connection closed.");
 }
 
 async function main() {

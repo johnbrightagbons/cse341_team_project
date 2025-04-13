@@ -1,4 +1,6 @@
 const passport = require("passport");
+const { validateUser, validateProduct, validatePayment, validateOrder } = require("../middleware/auth")
+const { body, validationResult } = require("express-validator");
 const routes = require("express").Router();
 const express = require("express");
 const UserController = require("../controllers/userController");
@@ -45,10 +47,10 @@ routes.get("/dashboard", isAuth, (req, res) => {
 // end of protected routes
 
 // CREATE
-routes.post("/users", UserController.create);
-routes.post("/orders", OrderController.create);
-routes.post("/payments", PaymentController.create);
-routes.post("/products", ProductController.create);
+routes.post("/users",validateUser, UserController.create);
+routes.post("/orders",validateOrder, OrderController.create);
+routes.post("/payments",validatePayment, PaymentController.create);
+routes.post("/products",validateProduct, ProductController.create);
 
 // READ Many
 routes.get("/users", UserController.index);

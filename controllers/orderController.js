@@ -1,4 +1,5 @@
 const Order = require("../models/Order");
+const { validationResult } = require("express-validator");
 
 class OrderController {
   static index = async (req, res) => {
@@ -25,6 +26,11 @@ class OrderController {
   };
 
   static create = async (req, res) => {
+    
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
     try {
       await Order.insertOne(req.body);
       return res.status(200).json("Order created successfully");
@@ -34,6 +40,11 @@ class OrderController {
   };
 
   static update = async (req, res) => {
+    
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
     try {
       await Order.findById(req.params.id)
         .then(async () => {
