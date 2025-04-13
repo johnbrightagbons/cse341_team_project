@@ -1,6 +1,6 @@
 import { Order } from "../models/order.model.js";
 import createError from "http-errors";
-import { validateOrder } from "../utils/validateOrder.js";
+import { orderSchema } from '../utils/validateOrder.js';
 import { Product } from "../models/product.model.js";
 import mongoose from "mongoose";
 
@@ -53,7 +53,7 @@ const createOrder = async (req, res, next) => {
         // #swagger.tags = ['Order']
 
         // Validate the order data        
-        const orders = await validateOrder.validateAsync(req.body);
+        const orders = await orderSchema.validateAsync(req.body);
         if (!orders || !productId) {
             return next(createError(400, "All fields are required."));
         }

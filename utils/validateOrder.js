@@ -1,7 +1,7 @@
 import Joi from "joi";
 import mongoose from "mongoose";
 
-const orderSchema = Joi.object({
+export const orderSchema = Joi.object({
     userId: Joi.string()
         .custom((value, helpers) => {
             if (!mongoose.Types.ObjectId.isValid(value)) {

@@ -1,6 +1,6 @@
 import { Payment } from "../models/payment.model.js";
 import createError from "http-errors";
-import { validatePayment } from "../utils/validatePayment.js";  // Import the validation utility
+import { paymentSchema } from "../utils/validatePayment.js";  
 import mongoose from "mongoose";
 
 // Get all payments
@@ -45,7 +45,7 @@ const createPayment = async (req, res, next) => {
         //#swagger.tags = ['Payment']
 
         // Validate the incoming payment data using Joi
-        const payments = await validatePayment.validateAsync(req.body);
+        const payments = await paymentSchema.validateAsync(req.body);
         if (!payments) {
             return next(createError(400, "All fields are required."));
         }
@@ -86,13 +86,7 @@ const updatePayment = async (req, res, next) => {
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return next(createError(400, "Invalid Payment ID"));
         }
-
-        // Validate the incoming payment data using Joi
-        const payments = await validatePayment.validateAsync(req.body);
-        if (!payments) {
-            return next(createError(400, "All fields are required."));
-        }
-
+      
         // Find the payment by ID and update it
         const updatedPayment = await Payment.findByIdAndUpdate(id, req.body, {
             new: true,

@@ -1,7 +1,7 @@
 import { User } from "../models/user.model.js";
 import createError from "http-errors";
-import { validateUser } from "../utils/validateUser.js";
 import mongoose from "mongoose";
+import { validateUser } from "../utils/validateUser.js";
 
 const getAll = async(req,res, next) => {
     try {

@@ -2,7 +2,7 @@ import Joi from "joi";
 import mongoose from "mongoose";
 
 
-const paymentSchema = Joi.object({
+export const paymentSchema = Joi.object({
     orderId: Joi.string()
         .custom((value, helpers) => {
             if (!mongoose.Types.ObjectId.isValid(value)) {
@@ -44,4 +44,4 @@ const validatePayment = async (req, res, next) => {
     }
 };
 
-export { validatePayment , paymentSchema };
+export { validatePayment };
