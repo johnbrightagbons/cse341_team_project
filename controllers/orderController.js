@@ -29,7 +29,7 @@ class OrderController {
     
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
+      return res.status(400).json({ errors: errors.array() });
     }
     try {
       await Order.insertOne(req.body);
@@ -43,7 +43,7 @@ class OrderController {
     
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
+      return res.status(400).json({ errors: errors.array() });
     }
     try {
       await Order.findById(req.params.id)
