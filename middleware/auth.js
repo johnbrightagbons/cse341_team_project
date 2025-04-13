@@ -1,8 +1,10 @@
-const isAuthenticated = (req, res, next) => {
-  if (req.user == undefined) {
-    return res.redirect("/login");
+function isAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
   }
-  next();
-};
 
-module.exports = { isAuthenticated };
+  // User is not authenticated
+  res.status(401).json({ message: "Unauthorized" });
+}
+
+module.exports = isAuthenticated;

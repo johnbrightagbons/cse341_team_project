@@ -6,7 +6,7 @@ const OrderController = require("../controllers/orderController");
 const PaymentController = require("../controllers/paymentController");
 const ProductController = require("../controllers/productController");
 const app = express();
-const { isAuthenticated } = require("../middleware/auth");
+const isAuthenticated = require("../middleware/auth");
 
 // login
 routes.get(
@@ -18,13 +18,6 @@ routes.get(
   "/auth/github/callback",
   passport.authenticate("github", { failureRedirect: "/login" }),
   function (req, res) {
-    req.session.user = req.user;
-    req.session.save((err) => {
-      if (err) {
-        console.error("Session save error:", err);
-        return res.status(500).send("Internal Server Error");
-      }
-    });
     res.redirect("/dashboard");
   }
 );
