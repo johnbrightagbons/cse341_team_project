@@ -32,13 +32,9 @@ routes.get(
   }
 );
 
-// protected routes
-routes.get("/", ContributorController.index);
-
 routes.get("/dashboard", isAuth, (req, res) => {
   return res.sendFile(__dirname + "/views/dashboard.html");
 });
-// end of protected routes
 
 // CREATE
 routes.post("/users", validateUser, UserController.create);
@@ -47,6 +43,7 @@ routes.post("/payments", validatePayment, PaymentController.create);
 routes.post("/products", validateProduct, ProductController.create);
 
 // READ Many
+routes.get("/", ContributorController.index);
 routes.get("/users", UserController.index);
 routes.get("/orders", OrderController.index);
 routes.get("/payments", PaymentController.index);
