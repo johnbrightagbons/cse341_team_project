@@ -7,7 +7,6 @@ const {
   validateUpdate,
 } = require("../middleware/auth");
 const routes = require("express").Router();
-const express = require("express");
 const UserController = require("../controllers/userController");
 const OrderController = require("../controllers/orderController");
 const PaymentController = require("../controllers/paymentController");
@@ -16,15 +15,7 @@ const ContributorController = require("../controllers/contributorController");
 const isAuth = require("../middleware/auth").isAuth;
 
 // login
-routes.get("/login", (req, res) => {
-  if (req.isAuthenticated()) {
-    return res.redirect("/dashboard");
-  }
-  // User is not authenticated
-  res.sendFile(__dirname + "/views/login.html");
-});
-
-routes.get("/auth/github", passport.authenticate("github"));
+routes.get("/login", passport.authenticate("github"));
 
 //logout
 routes.get("/logout", (req, res) => {
@@ -37,7 +28,7 @@ routes.get(
   "/auth/github/callback",
   passport.authenticate("github", { failureRedirect: "/login" }),
   function (req, res) {
-    res.redirect("/dashboard");
+    res.redirect("/api-docs");
   }
 );
 

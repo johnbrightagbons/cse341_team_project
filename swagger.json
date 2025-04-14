@@ -34,6 +34,15 @@
         "get": {
           "summary": "Get all contributors",
           "tags": ["Contributors-This API was created by the following BYU developers"],
+          "security": [
+            {
+              "Bearer": []
+            }
+          ],
+          "externalDocs":{
+            "description":"Authentication Guide",
+            "url":"https://cse341-team-project-jmne.onrender.com/login"
+          },
           "responses": {
             "200": {
               "description": "List of all contributors",
