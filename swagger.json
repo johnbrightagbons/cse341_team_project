@@ -4,10 +4,11 @@
     "info": {
       "title": "My E-commerce API",
       "version": "1.0.0",
-      "description": "This API interacts with four MongoDB database collections."
+      "description": "This is a simple CRUD API for an e-commerce application. It allows you to manage products, users, payments, and orders. You can create, read, update, and delete records in each of these categories. The API is built using Node.js and Express, and it uses MongoDB as the database. The API is designed to be easy to use and understand, with clear documentation and examples. Creators"
     },
     "servers": [{ "url": "https://cse341-team-project-jmne.onrender.com" }],
     "tags": [
+      { "name": "Contributors", "description": "Contributors of the API" },
       {
         "name": "Products",
         "description": "Products management API"
@@ -26,6 +27,27 @@
       }
     ],
     "paths": {
+      "/": {
+        "get": {
+          "summary": "Get all contributors",
+          "tags": ["Contributors"],
+          "responses": {
+            "200": {
+              "description": "List of all contributors",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Contributor"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "/users": {
         "post": {
           "summary": "Create a new User",
@@ -795,6 +817,54 @@
             "image": "https://github.com/johnbrightagbons/cse341_team_project/blob/main/assets/images/products/trio_juice.webp?raw=true",
             "price": "25.20",
             "status": "Delivered"
+          }
+        },
+        "Contributor": {
+          "type": "object",
+          "required": ["fullname"],
+          "properties": {
+            "fullname": {
+              "type": "string",
+              "description": "First Middle Last name"
+            },
+            "role": {
+              "type": "string",
+              "description": "Carrer Path"
+            },
+            "email": {
+              "type": "string",
+              "description": "Contributor's email address"
+            },
+            "githubUrl": {
+              "type": "string",
+              "description": "GitHub URL"
+            },
+            "contributions": {
+              "type": "array",
+              "description": "List of contributions"
+            },
+            "commits": {
+              "type": "number",
+              "description": "Number of commits"
+            },
+            "createdAt": "date",
+            "updatedAt": "date"
+          },
+          "example": {
+            "fullname": "Alex Chen",
+            "role": "Full-Stack Developer",
+            "email": "alex.chen@example.com",
+            "github": "github.com/alex-chen-dev",
+            "contributions": [
+              "Developed RESTful API endpoints for user authentication (JWT)",
+              "Designed and implemented the React frontend dashboard UI",
+              "Optimized MongoDB queries for 40% faster data retrieval",
+              "Integrated Stripe payment gateway for subscription management",
+              "Wrote unit tests (Jest) for 85% test coverage",
+              "Configured CI/CD pipelines with GitHub Actions and Docker",
+              "Documented API endpoints using Swagger UI/OpenAPI 3.0"
+            ],
+            "commits": 28
           }
         }
       }

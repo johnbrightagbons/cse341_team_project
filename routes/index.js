@@ -12,6 +12,7 @@ const UserController = require("../controllers/userController");
 const OrderController = require("../controllers/orderController");
 const PaymentController = require("../controllers/paymentController");
 const ProductController = require("../controllers/productController");
+const ContributorController = require("../controllers/contributorController");
 const isAuth = require("../middleware/auth").isAuth;
 
 // login
@@ -41,9 +42,7 @@ routes.get(
 );
 
 // protected routes
-routes.get("/", isAuth, (req, res) => {
-  res.redirect("/dashboard");
-});
+routes.get("/", isAuth, ContributorController.index);
 
 routes.get("/dashboard", isAuth, (req, res) => {
   return res.sendFile(__dirname + "/views/dashboard.html");
