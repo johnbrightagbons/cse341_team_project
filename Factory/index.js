@@ -534,6 +534,45 @@ async function main() {
       updatedAt: "2023-11-19T13:30:00Z",
     },
   ];
+  const contributorsData = [
+    {
+      name: "Jeancy Mpoyi",
+      role: "Student",
+      githubUrl: "https://github.com/jeancy001",
+      contributions: [],
+      commits: 6,
+    },
+    {
+      name: "John Bright Agbons",
+      role: "Student",
+      githubUrl: "https://github.com/johnbrightagbons",
+      contributions: [],
+      commits: 1,
+    },
+    {
+      name: "Soraya Skavinski",
+      role: "Student",
+      githubUrl: "https://github.com/soraya-skavinski-thaddeus",
+      contributions: [
+        "Created the authentication and validation of the API",
+        "Created the controllers for the API endpoints",
+        "Created the routes of the app",
+        "Created the server.js",
+      ],
+      commits: 6,
+    },
+    {
+      name: "Edward Kamwi",
+      role: "Student",
+      githubUrl: "https://github.com/EddyKamwi",
+      contributions: [
+        "Created the factory of the API and its data",
+        "Improved the controllers, models, routes, swagger docs, and server.js",
+        "Set up MongoDB and deployed the web-service with Render to host the API",
+      ],
+      commits: 82,
+    },
+  ];
 
   createMany(usersData, "users");
   console.log("Users seeded successfully!");
@@ -546,5 +585,8 @@ async function main() {
 
   createMany(ordersData, "orders");
   console.log("Orders seeded successfully!");
+
+  createMany(contributorsData, "contributors");
+  console.log("Contributors seeded successfully!");
 }
 main();

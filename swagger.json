@@ -8,7 +8,10 @@
     },
     "servers": [{ "url": "https://cse341-team-project-jmne.onrender.com" }],
     "tags": [
-      { "name": "Contributors", "description": "Contributors of the API" },
+      {
+        "name": "Contributors-This API was created by the following BYU developers",
+        "description": "{4}"
+      },
       {
         "name": "Products",
         "description": "Products management API"
