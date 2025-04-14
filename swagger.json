@@ -33,15 +33,17 @@
       "/": {
         "get": {
           "summary": "Get all contributors",
-          "tags": ["Contributors-This API was created by the following BYU developers"],
+          "tags": [
+            "Contributors-This API was created by the following BYU developers"
+          ],
           "security": [
             {
               "Bearer": []
             }
           ],
-          "externalDocs":{
-            "description":"Authentication Guide",
-            "url":"https://cse341-team-project-jmne.onrender.com/login"
+          "externalDocs": {
+            "description": "Authentication Guide",
+            "url": "https://cse341-team-project-jmne.onrender.com/login"
           },
           "responses": {
             "200": {
@@ -56,7 +58,8 @@
                   }
                 }
               }
-            },"401": {
+            },
+            "401": {
               "description": "Unauthorized"
             }
           }
@@ -364,6 +367,15 @@
         "post": {
           "summary": "Create a new Payment",
           "tags": ["Payments"],
+          "security": [
+            {
+              "Bearer": []
+            }
+          ],
+          "externalDocs": {
+            "description": "Authentication Guide",
+            "url": "https://cse341-team-project-jmne.onrender.com/login"
+          },
           "requestBody": {
             "required": true,
             "content": {
@@ -513,6 +525,15 @@
         "post": {
           "summary": "Create a new Product",
           "tags": ["Products"],
+          "security": [
+            {
+              "Bearer": []
+            }
+          ],
+          "externalDocs": {
+            "description": "Authentication Guide",
+            "url": "https://cse341-team-project-jmne.onrender.com/login"
+          },
           "requestBody": {
             "required": true,
             "content": {

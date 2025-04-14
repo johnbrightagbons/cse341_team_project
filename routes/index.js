@@ -43,8 +43,8 @@ routes.get("/dashboard", isAuth, (req, res) => {
 // CREATE
 routes.post("/users", validateUser, UserController.create);
 routes.post("/orders", validateOrder, OrderController.create);
-routes.post("/payments", validatePayment, PaymentController.create);
-routes.post("/products", validateProduct, ProductController.create);
+routes.post("/payments", isAuth, validatePayment, PaymentController.create);
+routes.post("/products", isAuth, validateProduct, ProductController.create);
 
 // READ Many
 routes.get("/users", UserController.index);
