@@ -6,7 +6,7 @@
       "version": "1.0.0",
       "description": "This API interacts with four MongoDB database collections."
     },
-    "servers": [{ "url": "https://cse341-team-project-jmne.onrender.com" }],
+    "servers": [{ "url": "https://cse341-team-project-sc1u.onrender.com" }],
     "tags": [
       {
         "name": "Products",

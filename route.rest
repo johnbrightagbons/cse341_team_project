@@ -1,0 +1,4 @@
+http://localhost:8080
+
+### GET All Orders
+GET http://localhost:8080/orders
