@@ -33,7 +33,7 @@ routes.get(
 );
 
 // protected routes
-routes.get("/", isAuth, ContributorController.index);
+routes.get("/", ContributorController.index);
 
 routes.get("/dashboard", isAuth, (req, res) => {
   return res.sendFile(__dirname + "/views/dashboard.html");
