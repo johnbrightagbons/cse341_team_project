@@ -38,7 +38,7 @@ passport.use(
     {
       clientID: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      callbackURL: 
+      callbackURL:
         "https://cse341-team-project-jmne.onrender.com/auth/github/callback",
     },
     function (accessToken, refreshToken, profile, cb) {

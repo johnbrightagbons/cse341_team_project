@@ -1,6 +1,4 @@
-require("dotenv").config();
 const mongoose = require("mongoose");
-mongoose.connect(process.env.MONGODB_URI);
 
 const userSchema = new mongoose.Schema({
   // to make our app easy to use and personalized lets replace username with fullname
