@@ -1,23 +1,16 @@
 # cse341_team_project
+## read docs : https://cse341-team-project-jmne.onrender.com/api-docs/
+
  # Intructions
 
- ## Install all the packages
+ ## Environment Variables
 
- #### 👉👉 1. [npm install cors dotenv express fs jsdoc mongodb mongoose swagger swagger-jsdoc swagger-ui-express --save]
- #### 👉👉 2. create a file [.env] and paste this [MONGODB_URI=""] in the file and save.
- #### 👉👉 3. to seed your database run this command[node Factory/index.js].
+ #### 1. MONGODB_URI - Mongodb uri for the application **please add a database Name to the string**
+ #### 2. MONGODB_URI_SEEDER - Mongodb uri works well without a database name in the string
+ #### 👉👉 6. to seed your database run this command[node Factory/index.js].
 
+ #### 3. GITHUB_CLIENT_ID 
+ #### 4. GITHUB_CLIENT_SECRET
+ #### 5. SESSION_SECRET - any string or name will do
 
-
- ### We are going to  use " import ..... from 'file' instead of  required  which is not  secure .
- ### 2. When import a  Modul  using with  with  extensions , like " import  example  from "index.js"
-
- ### 3 you can export files like  export{function , etc... }
  
- ### 4. to  read docs : https://cse341-team-project-jmne.onrender.com/api-docs/
-
-
-
-### 5. UTILS:  folder will helps us to handle collections fields .
-### 6. http-error  will  help us handle errors 
-
