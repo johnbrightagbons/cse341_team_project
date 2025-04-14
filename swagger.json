@@ -33,7 +33,7 @@
       "/": {
         "get": {
           "summary": "Get all contributors",
-          "tags": ["Contributors"],
+          "tags": ["Contributors-This API was created by the following BYU developers"],
           "responses": {
             "200": {
               "description": "List of all contributors",
