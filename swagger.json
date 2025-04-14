@@ -47,6 +47,8 @@
                   }
                 }
               }
+            },"401": {
+              "description": "Unauthorized"
             }
           }
         }
