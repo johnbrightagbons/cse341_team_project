@@ -6,7 +6,7 @@
       "version": "1.0.0",
       "description": "This is a simple CRUD API for an e-commerce application. It allows you to manage products, users, payments, and orders. You can create, read, update, and delete records in each of these categories. The API is built using Node.js and Express, and it uses MongoDB as the database. The API is designed to be easy to use and understand, with clear documentation and examples."
     },
-    "servers": [{ "url": "https://cse341-team-project-jmne.onrender.com/" }],
+    "servers": [{ "url": "https://cse341-team-project-sc1u.onrender.com" }],
     "tags": [
       {
         "name": "Contributors",

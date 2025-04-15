@@ -1,4 +1,72 @@
-http://localhost:8080
 
-### GET All Orders
-GET http://localhost:8080/orders
+### GET All users
+GET http://localhost:8080/users
+
+### GET user by ID
+GET http://localhost:8080/users/67fdfa356c31656a9c0b1560
+
+    
+### POST Users  
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "fullname": "shed Cherry",
+    "email": "shecherry@gmail.com",
+    "password": "password789",
+    "role": "client",
+    "createdAt": "2025-04-13T15:00:00Z",
+    "updatedAt": "2025-04-13T15:00:00Z"
+}
+
+### PUT Order by ID
+PUT http://localhost:8080/users/67fdfa356c31656a9c0b1560
+Content-Type: application/json
+
+{
+  "fullname": "John Donald",
+  "email": "johndon@gmail.com",
+  "password": "392893hg@.123",
+  "role": "client",
+  "createdAt": "2025-04-15T10:00:00.000Z",
+  "updatedAt": "2025-04-15T10:00:00.000Z"
+}
+
+### DELETE user by ID
+DELETE http://localhost:8080/users/67fdfbc76c31656a9c0b156a
+
+
+### GET all products    
+GET http://localhost:8080/products
+
+
+### GET product by ID   
+GET http://localhost:8080/products/67fdfe086d6e633b81237f71
+
+### POST product
+POST http://localhost:8080/products 
+Content-Type: application/json
+
+{
+  "name": "OXL Fan",
+  "description": "OXL Fan description",
+  "price": 50000,
+  "category": "Electronics",
+  "createdAt": "2025-04-13T15:00:00Z",
+  "updatedAt": "2025-04-13T15:00:00Z"
+}
+### PUT product by ID       
+PUT http://localhost:8080/products/67fdfe086d6e633b81237f71
+Content-Type: application/json
+
+{
+  "name": "product 2",
+  "description": "product 2 description",
+  "price": 1000,
+  "category": "Electronics",
+  "createdAt": "2025-04-13T15:00:00Z",
+  "updatedAt": "2025-04-13T15:00:00Z"
+}
+
+### DELETE product by ID
+DELETE http://localhost:8080/products/67fdfef86d6e633b81237f79

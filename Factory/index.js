@@ -1,14 +1,22 @@
 const { MongoClient, ObjectId } = require("mongodb");
 require("dotenv").config();
 
-// Initialize connection I could not use the class constructor because of the async function required for smooth
+const client = new MongoClient(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 10000,
+});
+
 async function connect() {
   try {
-    const client = await MongoClient.connect(process.env.MONGODB_URI_SEEDER);
-    console.log("Connected to MongoDB");
-    return client.db("ecommerce");
+    console.log("Attempting to connect to MongoDB...");
+    if (!client.isConnected && !client.topology?.isConnected()) {
+      await client.connect();
+    }
+    console.log("✅ Connected to MongoDB");
+    return client.db("project"); // Your DB name is 'project'
   } catch (error) {
-    console.error("MongoDB connection error:", error);
+    console.error("MongoDB connection error:", error.message);
     throw error;
   }
 }

@@ -5,73 +5,76 @@ class OrderController {
   static index = async (req, res) => {
     try {
       const orders = await Order.find();
+      console.log("Orders fetched successfully:", orders);
       return res.status(200).json(orders);
     } catch (error) {
-      return res.status(500).json("Server Error");
+      console.error("Error fetching orders:", error);
+      return res.status(500).json({ message: "Server Error" });
     }
   };
 
   static show = async (req, res) => {
     try {
-      Order.findById(req.params.id)
-        .then((order) => {
-          return res.status(200).json(order);
-        })
-        .catch(() => {
-          return res.status(404).json("Order not found");
-        });
-    } catch {
-      return res.status(500).json("Server Error");
+      const order = await Order.findById(req.params.id);
+      if (!order) {
+        return res.status(404).json({ message: "Order not found" });
+      }
+      return res.status(200).json(order);
+    } catch (error) {
+      console.error("Error fetching order:", error);
+      return res.status(500).json({ message: "Server Error" });
     }
   };
 
   static create = async (req, res) => {
-    
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
     try {
-      await Order.insertOne(req.body);
-      return res.status(200).json("Order created successfully");
+      const order = await Order.create(req.body);
+      return res
+        .status(201)
+        .json({ message: "Order created successfully", order });
     } catch (error) {
-      return res.status(500).json(error.message);
+      console.error("Error creating order:", error);
+      return res.status(500).json({ message: "Server Error" });
     }
   };
 
   static update = async (req, res) => {
-    
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
     try {
-      await Order.findById(req.params.id)
-        .then(async () => {
-          await Order.findByIdAndUpdate(req.params.id, req.body);
-          return res.status(200).json("Order updated successfully");
-        })
-        .catch(() => {
-          return res.status(404).json("Order not found");
-        });
+      const order = await Order.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+      });
+      if (!order) {
+        return res.status(404).json({ message: "Order not found" });
+      }
+      return res
+        .status(200)
+        .json({ message: "Order updated successfully", order });
     } catch (error) {
-      return res.status(500).json("Server Error");
+      console.error("Error updating order:", error);
+      return res.status(500).json({ message: "Server Error" });
     }
   };
 
   static destroy = async (req, res) => {
     try {
-      const checkId = await Order.findById(req.params.id)
-        .then(async () => {
-          await Order.findByIdAndDelete(req.params.id);
-          return res.status(200).json("Order deleted successfully");
-        })
-        .catch(() => {
-          return res.status(404).json("Order not found");
-        });
+      const order = await Order.findByIdAndDelete(req.params.id);
+      if (!order) {
+        return res.status(404).json({ message: "Order not found" });
+      }
+      return res.status(200).json({ message: "Order deleted successfully" });
     } catch (error) {
-      return res.status(500).json("Server Error");
+      console.error("Error deleting order:", error);
+      return res.status(500).json({ message: "Server Error" });
     }
   };
 }
+
 module.exports = OrderController;

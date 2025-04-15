@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const mongoose = require("mongoose");
 const routers = require("./routes/index.js");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDoc = require("swagger-jsdoc");
@@ -10,9 +11,23 @@ const passport = require("passport");
 const session = require("express-session");
 const GitHubStrategy = require("passport-github").Strategy;
 
+// ✅ Mongoose Connection Block
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 10000,
+  })
+  .then(() => {
+    console.log("✅ Mongoose connected to MongoDB");
+  })
+  .catch((err) => {
+    console.error("❌ Mongoose connection error:", err.message);
+  });
+
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
+    secret: process.env.GITHUB_CLIENT_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -38,10 +53,15 @@ passport.use(
     {
       clientID: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      callbackURL:
-        "https://cse341-team-project-jmne.onrender.com/auth/github/callback",
+      callbackURL: process.env.GITHUB_CALLBACK_URL,
     },
     function (accessToken, refreshToken, profile, cb) {
+      if (!profile) {
+        console.log("❌ GitHub authentication failed");
+        return cb("Error: No profile returned");
+      }
+      console.log("✅ GitHub authentication successful", profile);
+
       return cb(null, profile);
     }
   )
