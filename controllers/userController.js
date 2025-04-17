@@ -1,8 +1,7 @@
 const User = require("../models/User");
-const {validationResult}=require("express-validator")
+const { validationResult } = require("express-validator");
 
 class UserController {
-  
   static index = async (req, res) => {
     try {
       const users = await User.find();
@@ -27,11 +26,11 @@ class UserController {
   };
 
   static create = async (req, res) => {
-
-    // const errors = validationResult(req);
-    // if (!errors.isEmpty()) {
-    //   return res.status(400).json({ errors: errors.array() });
-    // }
+    
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
 
     try {
       await User.insertOne(req.body);
@@ -42,12 +41,11 @@ class UserController {
   };
 
   static update = async (req, res) => {
-    
     // const errors = validationResult(req);
     // if (!errors.isEmpty()) {
     //   return res.status(400).json({ errors: errors.array() });
     // }
-    
+
     try {
       await User.findById(req.params.id)
         .then(async () => {
