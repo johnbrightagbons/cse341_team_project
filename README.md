@@ -14,4 +14,4 @@
 
 ## Render /app Url: https://cse341-team-project-jmne.onrender.com
 
-# Please Not that we have not Implemented the unit testing anyone to help
+# Please Note that we have not Implemented the unit testing anyone to help
