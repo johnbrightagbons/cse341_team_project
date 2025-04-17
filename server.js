@@ -70,3 +70,5 @@ app.use("/", routers);
 app.listen(8080, () => {
   console.log("server started and listening at port 8080");
 });
+
+module.exports = app

@@ -45,13 +45,13 @@ routes.get("/", ContributorController.index);
 routes.get("/users", UserController.index);
 routes.get("/orders", OrderController.index);
 routes.get("/payments", PaymentController.index);
-routes.get("/products", ProductController.index);
+routes.get("/products",isAuth, ProductController.index);
 
 // READ ONE
 routes.get("/users/:id", UserController.show);
 routes.get("/orders/:id", OrderController.show);
 routes.get("/payments/:id", PaymentController.show);
-routes.get("/products/:id", ProductController.show);
+routes.get("/products/:id",isAuth, ProductController.show);
 
 // UPDATE
 routes.put("/users/:id", validateUpdate, UserController.update);
