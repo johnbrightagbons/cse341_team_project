@@ -13,11 +13,7 @@ const GitHubStrategy = require("passport-github").Strategy;
 
 // ✅ Mongoose Connection Block
 mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 10000,
-  })
+  .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("✅ Mongoose connected to MongoDB");
   })
