@@ -20,7 +20,7 @@ const validateUser = [
 const validateProduct = [
   body("name").notEmpty().withMessage("Product name is required"),
   body("description").notEmpty().withMessage("Description is required"),
-  body("image").notEmpty().isURL().withMessage("Image Url is required"),
+  body("image").notEmpty().withMessage("Image Url is required").isURL().withMessage("Image Url is not valid"),
   body("price")
     .notEmpty()
     .withMessage("Price is required")
