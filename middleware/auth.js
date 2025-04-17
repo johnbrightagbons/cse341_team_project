@@ -1,4 +1,4 @@
-const { body, validationResult } = require("express-validator");
+const { body } = require("express-validator");
 
 const isAuth = (req, res, next) => {
   if (req.isAuthenticated()) {
@@ -117,10 +117,6 @@ const validateUpdate = [
     .notEmpty()
     .isMongoId()
     .withMessage("Product Id is not valid"),
-  body("description")
-    .optional()
-    .notEmpty()
-    .withMessage("Description is not valid"),
   body("price")
     .optional()
     .notEmpty()

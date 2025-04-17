@@ -4,6 +4,7 @@ const {
   validatePayment,
   validateProduct,
   validateUser,
+  validateUpdate,
 } = require("../middleware/auth");
 const routes = require("express").Router();
 const UserController = require("../controllers/userController");
@@ -36,10 +37,10 @@ routes.get("/dashboard", isAuth, (req, res) => {
 });
 
 // CREATE
-routes.post("/users", UserController.create);
-routes.post("/orders", OrderController.create);
-routes.post("/payments", PaymentController.create);
-routes.post("/products", ProductController.create);
+routes.post("/users", validateUser, UserController.create);
+routes.post("/orders", validateOrder, OrderController.create);
+routes.post("/payments", validatePayment, PaymentController.create);
+routes.post("/products", validateProduct, ProductController.create);
 
 // READ Many
 routes.get("/", ContributorController.index);
@@ -55,10 +56,10 @@ routes.get("/payments/:id", PaymentController.show);
 routes.get("/products/:id", isAuth, ProductController.show);
 
 // UPDATE
-routes.put("/users/:id", UserController.update);
-routes.put("/orders/:id", OrderController.update);
-routes.put("/payments/:id", PaymentController.update);
-routes.put("/products/:id", ProductController.update);
+routes.put("/users/:id", validateUpdate, UserController.update);
+routes.put("/orders/:id", validateUpdate, OrderController.update);
+routes.put("/payments/:id", validateUpdate, PaymentController.update);
+routes.put("/products/:id", validateUpdate, ProductController.update);
 
 // DELETE
 routes.delete("/users/:id", UserController.destroy);
