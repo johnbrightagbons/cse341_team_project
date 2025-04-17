@@ -76,6 +76,9 @@
                 }
               }
             },
+            "400": {
+              "description": "Required value or Type Not valid"
+            },
             "500": {
               "description": "Server error"
             }
@@ -137,6 +140,9 @@
             },
             "404": {
               "description": "User not found"
+            },
+            "400": {
+              "description": "Required value or Type Not valid"
             },
             "500": {
               "description": "Server error"
@@ -224,6 +230,9 @@
                   }
                 }
               }
+            },
+            "400": {
+              "description": "Required value or Type Not valid"
             },
             "500": {
               "description": "Server error"
@@ -374,6 +383,7 @@
                 }
               }
             },
+            "400": { "description": "Required value or Type Not valid" },
             "500": {
               "description": "Server error"
             }
@@ -523,6 +533,7 @@
                 }
               }
             },
+            "400": { "description": "Required value or Type Not valid" },
 
             "500": {
               "description": "Server error"
@@ -594,6 +605,7 @@
                 }
               }
             },
+            "400": { "description": "Required value or Type Not valid" },
             "404": {
               "description": "Product not found"
             },
