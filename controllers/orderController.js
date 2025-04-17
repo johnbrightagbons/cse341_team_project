@@ -26,10 +26,10 @@ class OrderController {
   };
 
   static create = async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
+    // const errors = validationResult(req);
+    // if (!errors.isEmpty()) {
+    //   return res.status(400).json({ errors: errors.array() });
+    // }
     try {
       const order = await Order.create(req.body);
       return res
@@ -42,10 +42,10 @@ class OrderController {
   };
 
   static update = async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
+    //   const errors = validationResult(req);
+    //   if (!errors.isEmpty()) {
+    //     return res.status(400).json({ errors: errors.array() });
+    //   }
     try {
       const order = await Order.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
