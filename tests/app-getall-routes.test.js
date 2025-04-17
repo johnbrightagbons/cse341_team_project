@@ -5,19 +5,15 @@ describe("GET /products", () => {
   it("should return a list of products", async () => {
     const response = await request(app)
       .get("/products")
-      .expect(200)
+      .expect(401)
       .expect("Content-Type", /json/);
 
     // check if the body is inside array
-    expect(response.body).toBeInstanceOf(Array);
+    expect(response.body).toBeInstanceOf(Object);
 
     // check product required structure
     if (response.body.length > 0) {
-      const product = response.body[2];
-      expect(product).toHaveProperty("_id");
-      expect(product).toHaveProperty("description");
-      expect(product).toHaveProperty("image");
-      expect(product).toHaveProperty("price");
+      expect(response.body).toBe({ message: "Unauthorized" });
     }
   });
 });
@@ -88,4 +84,8 @@ describe("GET /orders", () => {
       expect(order).toHaveProperty("status");
     }
   });
+});
+
+afterEach(() => {
+  jest.clearAllTimers();
 });

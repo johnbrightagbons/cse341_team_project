@@ -5,7 +5,6 @@ class OrderController {
   static index = async (req, res) => {
     try {
       const orders = await Order.find();
-      console.log("Orders fetched successfully:", orders);
       return res.status(200).json(orders);
     } catch (error) {
       console.error("Error fetching orders:", error);
