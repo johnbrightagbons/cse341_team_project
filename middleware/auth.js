@@ -10,9 +10,9 @@ const isAuth = (req, res, next) => {
 
 const validateUser = [
   body("fullname").notEmpty().withMessage("Fullname is required"),
-  body("email").notEmpty().isEmail().withMessage("Password is required"),
+  body("email").notEmpty().withMessage("Password is required").isEmail().withMessage("Please use a Valid email"),
   body("password")
-    .notEmpty()
+    .notEmpty().withMessage("password is required")
     .isLength({ min: 8 })
     .withMessage("Password required with at least 8 characters"),
   body("role").notEmpty().withMessage("Role is required"),
