@@ -10,6 +10,7 @@ const app = express();
 const passport = require("passport");
 const session = require("express-session");
 const GitHubStrategy = require("passport-github").Strategy;
+const bodyParser = require("body-parser");
 
 // ✅ Mongoose Connection Block
 mongoose
@@ -20,6 +21,8 @@ mongoose
   .catch((err) => {
     console.error("❌ Mongoose connection error:", err.message);
   });
+app.use(bodyParser.json());
+app.use(express.json());
 
 app.use(
   session({
@@ -28,7 +31,7 @@ app.use(
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      secure: false,
+      secure: true,
       maxAge: 24 * 60 * 60 * 1000,
     },
   })
@@ -54,7 +57,7 @@ passport.use(
     function (accessToken, refreshToken, profile, cb) {
       if (!profile) {
         console.log("❌ GitHub authentication failed");
-        return cb(error,"Error: No profile returned");
+        return cb(error, "Error: No profile returned");
       }
       console.log("✅ GitHub authentication successful");
 
@@ -63,7 +66,6 @@ passport.use(
   )
 );
 
-app.use(express.json());
 app.use("/api-docs/", swaggerUi.serve, swaggerUi.setup(specs));
 app.use("/", routers);
 
@@ -71,4 +73,4 @@ app.listen(8080, () => {
   console.log("server started and listening at port 8080");
 });
 
-module.exports = app
+module.exports = app;
