@@ -54,9 +54,9 @@ passport.use(
     function (accessToken, refreshToken, profile, cb) {
       if (!profile) {
         console.log("❌ GitHub authentication failed");
-        return cb("Error: No profile returned");
+        return cb(error,"Error: No profile returned");
       }
-      console.log("✅ GitHub authentication successful", profile);
+      console.log("✅ GitHub authentication successful");
 
       return cb(null, profile);
     }
