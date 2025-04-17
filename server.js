@@ -13,16 +13,7 @@ const GitHubStrategy = require("passport-github").Strategy;
 const bodyParser = require("body-parser");
 
 // ✅ Mongoose Connection Block
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log("✅ Mongoose connected to MongoDB");
-  })
-  .catch((err) => {
-    console.error("❌ Mongoose connection error:", err.message);
-  });
-app.use(bodyParser.json());
-app.use(express.json());
+mongoose.connect(process.env.MONGO_URI);
 
 app.use(
   session({
@@ -55,16 +46,13 @@ passport.use(
       callbackURL: process.env.GITHUB_CALLBACK_URL,
     },
     function (accessToken, refreshToken, profile, cb) {
-      if (!profile) {
-        console.log("❌ GitHub authentication failed");
-        return cb(error, "Error: No profile returned");
-      }
-      console.log("✅ GitHub authentication successful");
-
       return cb(null, profile);
     }
   )
 );
+
+app.use(bodyParser.json());
+app.use(express.json());
 
 app.use("/api-docs/", swaggerUi.serve, swaggerUi.setup(specs));
 app.use("/", routers);
