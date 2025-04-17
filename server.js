@@ -10,7 +10,6 @@ const app = express();
 const passport = require("passport");
 const session = require("express-session");
 const GitHubStrategy = require("passport-github").Strategy;
-const bodyParser = require("body-parser");
 
 // ✅ Mongoose Connection Block
 mongoose.connect(process.env.MONGO_URI);
@@ -22,7 +21,7 @@ app.use(
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      secure: true,
+      secure: false,
       maxAge: 24 * 60 * 60 * 1000,
     },
   })
@@ -31,11 +30,11 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser(function (user, cb) {
-  cb(null, user.id);
+passport.serializeUser(function (user, done) {
+  done(null, user.id);
 });
-passport.deserializeUser(function (id, cb) {
-  cb(null, id);
+passport.deserializeUser(function (id, done) {
+  done(null, id);
 });
 
 passport.use(
@@ -46,14 +45,14 @@ passport.use(
       callbackURL: process.env.GITHUB_CALLBACK_URL,
     },
     function (accessToken, refreshToken, profile, cb) {
-      return cb(null, profile);
+      {
+        return cb(null, profile);
+      }
     }
   )
 );
 
-app.use(bodyParser.json());
 app.use(express.json());
-
 app.use("/api-docs/", swaggerUi.serve, swaggerUi.setup(specs));
 app.use("/", routers);
 
