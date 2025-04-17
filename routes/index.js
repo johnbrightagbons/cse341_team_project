@@ -1,6 +1,5 @@
 const passport = require("passport");
 const {
-  validateUpdate,
   validateOrder,
   validatePayment,
   validateProduct,
@@ -37,10 +36,10 @@ routes.get("/dashboard", isAuth, (req, res) => {
 });
 
 // CREATE
-routes.post("/users", validateUser, UserController.create);
-routes.post("/orders", validateOrder, OrderController.create);
-routes.post("/payments", validatePayment, PaymentController.create);
-routes.post("/products", validateProduct, ProductController.create);
+routes.post("/users", UserController.create);
+routes.post("/orders", OrderController.create);
+routes.post("/payments", PaymentController.create);
+routes.post("/products", ProductController.create);
 
 // READ Many
 routes.get("/", ContributorController.index);
@@ -56,10 +55,10 @@ routes.get("/payments/:id", PaymentController.show);
 routes.get("/products/:id", isAuth, ProductController.show);
 
 // UPDATE
-routes.put("/users/:id", validateUpdate, UserController.update);
-routes.put("/orders/:id", validateUpdate, OrderController.update);
-routes.put("/payments/:id", validateUpdate, PaymentController.update);
-routes.put("/products/:id", validateUpdate, ProductController.update);
+routes.put("/users/:id", UserController.update);
+routes.put("/orders/:id", OrderController.update);
+routes.put("/payments/:id", PaymentController.update);
+routes.put("/products/:id", ProductController.update);
 
 // DELETE
 routes.delete("/users/:id", UserController.destroy);
