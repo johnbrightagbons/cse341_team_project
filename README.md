@@ -8,7 +8,7 @@
 
 ## Youtube: week6 -https://youtu.be/hnEZnbXTqh0
 
-## Youtube: week7 Not Yet.
+## Youtube: week7 -https://youtu.be/owdtuuVKMGU
 
 ## Github Url: https://github.com/johnbrightagbons/cse341_team_project
 
